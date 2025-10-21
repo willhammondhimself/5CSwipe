@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Course Search - Course Search Results
+  </title>
+  <link href="css/course-search.css" rel="stylesheet" type="text/css"/>
+  <!--link href="css/footable.core.css" rel="stylesheet" type="text/css">-->
+  <script src="js/course-search.js" type="text/javascript">
+  </script>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- bootstrap -->
+  <link href="https://webapps.cmc.edu/common/bootstrap/stylesheets/css/styles.css" rel="stylesheet"/>
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+      <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/html5shiv.js"></script>
+    <![endif]-->
+  <!-- Fav and touch icons -->
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-114-precomposed.png" rel="apple-touch-icon-precomposed" sizes="114x114"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-57-precomposed.png" rel="apple-touch-icon-precomposed"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/favicon.png" rel="shortcut icon"/>
+ </head>
+ <body>
+  <div class="container" id="main">
+   <div id="box">
+    <div class="row">
+     <div class="span11" id="secondary-container">
+      <style>
+       #menu ul{
+  list-style: none;
+  width: 250px;
+  word-break: break-all;
+
+  /*white-space: wrap;
+  word-wrap: break-word;
+  overflow-x: scroll;*/
+
+
+}
+#menu li{
+  display: inline;
+  /*padding-left: 15px;*/
+  font-weight:bold;
+
+  width: 25px;
+  float: left;
+      </style>
+      <div class="page-header">
+       <h4>
+        Course Search Results - FA 2025
+       </h4>
+      </div>
+      <div>
+      </div>
+      <div>
+       <span style="float:right">
+        <font size="+1">
+         <a href="form.php">
+          Search Again
+         </a>
+        </font>
+       </span>
+       <table class="table footable table-bordered" data-page-navigation=".pagination" data-page-size="20">
+        <thead>
+         <tr valign="top">
+          <th>
+           Course - Section
+          </th>
+          <th>
+           Title
+          </th>
+          <th data-hide="phone">
+           Seats Available
+          </th>
+          <th data-hide="phone">
+           Credit
+          </th>
+          <th data-hide="phone">
+           Meetings
+          </th>
+          <th data-hide="phone">
+           Instructors
+          </th>
+          <th data-hide="phone">
+           Notes
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr valig="">
+          <td>
+           CSCI005  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI005  HM&amp;Sec=01', 'desc', '700', '420');">
+            Introduction to Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI005  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           11/204 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    8:10AM-9:25AM / HM Campus, Galileo Hall, MCAL
+          </td>
+          <td>
+           Dodds, Zachary B.
+           <br/>
+           Medero, Julie
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI005  HM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI005  HM&amp;Sec=02', 'desc', '700', '420');">
+            Introduction to Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI005  HM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/40 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    8:10AM-9:25AM / HM Campus, Shanahan Center, 2460
+          </td>
+          <td>
+           Medero, Julie
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI005  HM - 03
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI005  HM&amp;Sec=03', 'desc', '700', '420');">
+            Introduction to Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI005  HM', '03');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/42 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    8:10AM-9:25AM / HM Campus, Shanahan Center, 2454
+          </td>
+          <td>
+           Wiedermann, Benjamin
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI005L HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI005L HM&amp;Sec=01', 'desc', '700', '420');">
+            Intro to Computer Science Lab
+           </a>
+           <img onclick="getTextbook('CSCI005L HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/120 (Closed - Full)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           T     1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 203
+           <br/>
+           T     1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 204
+           <br/>
+           T     1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 205
+          </td>
+          <td>
+           Staff
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI005L HM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI005L HM&amp;Sec=02', 'desc', '700', '420');">
+            Intro to Computer Science Lab
+           </a>
+           <img onclick="getTextbook('CSCI005L HM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           3/120 (Reopened)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           W     1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 203
+           <br/>
+           W     1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 204
+           <br/>
+           W     1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 205
+          </td>
+          <td>
+           Staff
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI005L HM - 03
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI005L HM&amp;Sec=03', 'desc', '700', '420');">
+            Intro to Computer Science Lab
+           </a>
+           <img onclick="getTextbook('CSCI005L HM', '03');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           70/108 (Open)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           0 -0  / HM Campus, ,
+          </td>
+          <td>
+           Staff
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI036  CM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI036  CM&amp;Sec=01', 'desc', '700', '420');">
+            Foundations of Data Science
+           </a>
+           <img onclick="getTextbook('CSCI036  CM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -3/18 (Closed - Full)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MWF   9:00AM-9:50AM / CM Campus, The Kravis Center, 165
+          </td>
+          <td>
+           Huber, Mark
+          </td>
+          <td>
+           Instructor permission required
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI040  CM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI040  CM&amp;Sec=01', 'desc', '700', '420');">
+            Computing for the Web
+           </a>
+           <img onclick="getTextbook('CSCI040  CM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/18 (Closed - Full)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    11:00AM-12:15PM / CM Campus, Roberts North, 12
+          </td>
+          <td>
+           Ahmadnia, Benyamin Bosari
+          </td>
+          <td>
+           Non-CMC students need permission
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI040  CM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI040  CM&amp;Sec=02', 'desc', '700', '420');">
+            Computing for the Web
+           </a>
+           <img onclick="getTextbook('CSCI040  CM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/18 (Closed - Full)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / CM Campus, Roberts North, 12
+          </td>
+          <td>
+           Ahmadnia, Benyamin Bosari
+          </td>
+          <td>
+           Non-CMC students need permission
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI046  CM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI046  CM&amp;Sec=01', 'desc', '700', '420');">
+            Data Structures and Algorithms
+           </a>
+           <img onclick="getTextbook('CSCI046  CM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/18 (Closed - Full)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    9:35AM-10:50AM / CM Campus, Roberts North, 12
+          </td>
+          <td>
+           Ahmadnia, Benyamin Bosari
+          </td>
+          <td>
+           Non-CMC students need permission
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI046L CM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI046L CM&amp;Sec=01', 'desc', '700', '420');">
+            Data Structures &amp; Algorithms Lab
+           </a>
+           <img onclick="getTextbook('CSCI046L CM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           5/18 (Open)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           F     9:35AM-10:50AM / CM Campus, Roberts North, 12
+          </td>
+          <td>
+           Ahmadnia, Benyamin Bosari
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI050  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI050  PO&amp;Sec=01', 'desc', '700', '420');">
+            Fundamentals of Programming
+           </a>
+           <img onclick="getTextbook('CSCI050  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           3/24 (Open)
+          </td>
+          <td>
+           0.50
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / PO Campus, Edmunds, 114
+          </td>
+          <td>
+           Osborn, Joseph C
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Non-PO requires PERM.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI050  PO - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI050  PO&amp;Sec=02', 'desc', '700', '420');">
+            Fundamentals of Programming
+           </a>
+           <img onclick="getTextbook('CSCI050  PO', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           5/24 (Closed)
+          </td>
+          <td>
+           0.50
+          </td>
+          <td>
+           TR    2:45PM-4:00PM / PO Campus, Edmunds, 114
+          </td>
+          <td>
+           Osborn, Joseph C
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Non-PO requires PERM.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI051  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI051  PO&amp;Sec=01', 'desc', '700', '420');">
+            Introduction to Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI051  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           5/30 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    9:35AM-10:50AM / PO Campus, Estella Laboratory, 2113
+          </td>
+          <td>
+           Papoutsaki, Alexandra
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Lab required - CSCI051 LPO
+           <br/>
+           Non-PO requires PERM.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI051 LPO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI051 LPO&amp;Sec=01', 'desc', '700', '420');">
+            Lab, Intro to Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI051 LPO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           3/15 (Closed)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           F     1:15PM-2:30PM / PO Campus, Edmunds, 229
+          </td>
+          <td>
+           Papoutsaki, Alexandra
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Must be enrolled in CSCI051  PO.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI051 LPO - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI051 LPO&amp;Sec=02', 'desc', '700', '420');">
+            Lab, Intro to Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI051 LPO', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           3/15 (Open)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           F     2:45PM-4:00PM / PO Campus, Edmunds, 229
+          </td>
+          <td>
+           Papoutsaki, Alexandra
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Must be enrolled in CSCI051  PO.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI051A PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI051A PO&amp;Sec=01', 'desc', '700', '420');">
+            Intro to CS with Topics in AI
+           </a>
+           <img onclick="getTextbook('CSCI051A PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           2/30 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / PO Campus, Edmunds, 101
+          </td>
+          <td>
+           Kauchak, David R.
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Lab required - CSCI051ALPO
+           <br/>
+           Non-PO requires PERM.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI051ALPO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI051ALPO&amp;Sec=01', 'desc', '700', '420');">
+            Lab, Intro to CS w/Topics in AI
+           </a>
+           <img onclick="getTextbook('CSCI051ALPO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           1/15 (Closed)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           W     1:15PM-2:30PM / PO Campus, Edmunds, 219
+          </td>
+          <td>
+           Kauchak, David R.
+          </td>
+          <td>
+           Must be enrolled in CSCI051A PO.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI051ALPO - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI051ALPO&amp;Sec=02', 'desc', '700', '420');">
+            Lab, Intro to CS w/Topics in AI
+           </a>
+           <img onclick="getTextbook('CSCI051ALPO', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           2/15 (Closed)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           W     2:45PM-4:00PM / PO Campus, Edmunds, 229
+          </td>
+          <td>
+           Kauchak, David R.
+          </td>
+          <td>
+           Must be enrolled in CSCI051A PO.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI054  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI054  PO&amp;Sec=01', 'desc', '700', '420');">
+            Math Foundations of CS
+           </a>
+           <img onclick="getTextbook('CSCI054  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           4/30 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MWF   10:00AM-10:50AM / PO Campus, Edmunds, 114
+          </td>
+          <td>
+           Chen, Tzu-Yi
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI060  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI060  HM&amp;Sec=01', 'desc', '700', '420');">
+            Principles of Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI060  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/27 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    2:45PM-4:00PM / HM Campus, Shanahan Center, 3460
+          </td>
+          <td>
+           Trushkowsky, Katherine
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI060  HM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI060  HM&amp;Sec=02', 'desc', '700', '420');">
+            Principles of Computer Science
+           </a>
+           <img onclick="getTextbook('CSCI060  HM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           2/27 (Reopened)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    4:15PM-5:30PM / HM Campus, Shanahan Center, 3460
+          </td>
+          <td>
+           Engle, Sophie
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI062  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI062  PO&amp;Sec=01', 'desc', '700', '420');">
+            Data Structures Adv Programming
+           </a>
+           <img onclick="getTextbook('CSCI062  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           4/30 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MW    2:45PM-4:00PM / PO Campus, Edmunds, 114
+          </td>
+          <td>
+           Li, Jingyi
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+           <br/>
+           Lab required - CSCI062 LPO
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI062 LPO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI062 LPO&amp;Sec=01', 'desc', '700', '420');">
+            Data Structures/Adv Program Lab
+           </a>
+           <img onclick="getTextbook('CSCI062 LPO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/15 (Closed - Full)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           W     7:00PM-8:15PM / PO Campus, Edmunds, 219
+          </td>
+          <td>
+           Li, Jingyi
+          </td>
+          <td>
+           By PERM only.
+           <br/>
+           Must be enrolled in CSCI062  PO.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI062 LPO - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI062 LPO&amp;Sec=02', 'desc', '700', '420');">
+            Data Structures/Adv Program Lab
+           </a>
+           <img onclick="getTextbook('CSCI062 LPO', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           6/15 (Open)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           W     8:30PM-9:45PM / PO Campus, Edmunds, 229
+          </td>
+          <td>
+           Li, Jingyi
+          </td>
+          <td>
+           By PERM only.
+           <br/>
+           Must be enrolled in CSCI062  PO.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI070  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI070  HM&amp;Sec=01', 'desc', '700', '420');">
+            Data Structures/Prgm Development
+           </a>
+           <img onclick="getTextbook('CSCI070  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -1/24 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    2:45PM-4:00PM / HM Campus, McGregor CompSci Center, 206
+          </td>
+          <td>
+           O'Neill, Melissa E.
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI070  HM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI070  HM&amp;Sec=02', 'desc', '700', '420');">
+            Data Structures/Prgm Development
+           </a>
+           <img onclick="getTextbook('CSCI070  HM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           5/26 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    4:15PM-5:30PM / HM Campus, McGregor CompSci Center, 206
+          </td>
+          <td>
+           O'Neill, Melissa E.
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI081  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI081  HM&amp;Sec=01', 'desc', '700', '420');">
+            Computability and Logic
+           </a>
+           <img onclick="getTextbook('CSCI081  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           19/30 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / HM Campus, Shanahan Center, 1480
+          </td>
+          <td>
+           Ojha, Vidushi
+           <br/>
+           Bang, Lucas
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI081  HM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI081  HM&amp;Sec=02', 'desc', '700', '420');">
+            Computability and Logic
+           </a>
+           <img onclick="getTextbook('CSCI081  HM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           7/30 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    2:45PM-4:00PM / HM Campus, Shanahan Center, 1480
+          </td>
+          <td>
+           Ojha, Vidushi
+           <br/>
+           Bang, Lucas
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI101  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI101  PO&amp;Sec=01', 'desc', '700', '420');">
+            Intro to Languages and Theory
+           </a>
+           <img onclick="getTextbook('CSCI101  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           7/20 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MW    1:15PM-2:30PM / PO Campus, Edmunds, 101
+          </td>
+          <td>
+           Chen, Tzu-Yi
+           <br/>
+           Zlatin, Michael
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI101  PO - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI101  PO&amp;Sec=02', 'desc', '700', '420');">
+            Intro to Languages and Theory
+           </a>
+           <img onclick="getTextbook('CSCI101  PO', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           7/20 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MW    2:45PM-4:00PM / PO Campus, Edmunds, 101
+          </td>
+          <td>
+           Chen, Tzu-Yi
+           <br/>
+           Zlatin, Michael
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI105  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI105  HM&amp;Sec=01', 'desc', '700', '420');">
+            Computer Systems
+           </a>
+           <img onclick="getTextbook('CSCI105  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           6/30 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / HM Campus, Shanahan Center, 3460
+           <br/>
+           F     1:15PM-2:30PM / HM Campus, McGregor CompSci Center, 203
+           <br/>
+           F     1:15PM-2:30PM / HM Campus, McGregor CompSci Center, 204
+          </td>
+          <td>
+           Trushkowsky, Katherine
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI105  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI105  PO&amp;Sec=01', 'desc', '700', '420');">
+            Computer Systems
+           </a>
+           <img onclick="getTextbook('CSCI105  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/25 (Closed - Full)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MW    1:15PM-2:30PM / PO Campus, Edmunds, 105
+          </td>
+          <td>
+           Osborn, Joseph C
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+           <br/>
+           Lab required - CSCI105 LPO
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI105 LPO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI105 LPO&amp;Sec=01', 'desc', '700', '420');">
+            Computer Systems, Lab
+           </a>
+           <img onclick="getTextbook('CSCI105 LPO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -2/25 (Closed - Full)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           F     1:15PM-2:30PM / PO Campus, Edmunds, 105
+          </td>
+          <td>
+           Osborn, Joseph C
+          </td>
+          <td>
+           By PERM only.
+           <br/>
+           Must be enrolled in CSCI105  PO.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI120  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI120  HM&amp;Sec=01', 'desc', '700', '420');">
+            Human-Centered Computing Methods
+           </a>
+           <img onclick="getTextbook('CSCI120  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -1/18 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / HM Campus, Shanahan Center, 2425
+          </td>
+          <td>
+           Kirabo, Lynn
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI123  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI123  HM&amp;Sec=01', 'desc', '700', '420');">
+            Comput Practices/Projects/People
+           </a>
+           <img onclick="getTextbook('CSCI123  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           1/20 (Reopened)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           MW    1:15PM-2:30PM / HM Campus, Shanahan Center, 2461
+          </td>
+          <td>
+           Kirabo, Lynn
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI140  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI140  HM&amp;Sec=01', 'desc', '700', '420');">
+            Algorithms
+           </a>
+           <img onclick="getTextbook('CSCI140  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -1/31 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           MW    9:35AM-10:50AM / HM Campus, Shanahan Center, B480
+          </td>
+          <td>
+           Bachman, David
+           <br/>
+           Randolph, Tim
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI140  HM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI140  HM&amp;Sec=02', 'desc', '700', '420');">
+            Algorithms
+           </a>
+           <img onclick="getTextbook('CSCI140  HM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -3/30 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           MW    1:15PM-2:30PM / HM Campus, Shanahan Center, 2475
+          </td>
+          <td>
+           Randolph, Tim
+           <br/>
+           Bachman, David
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI140  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI140  PO&amp;Sec=01', 'desc', '700', '420');">
+            Algorithms
+           </a>
+           <img onclick="getTextbook('CSCI140  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           4/25 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    9:35AM-10:50AM / PO Campus, Edmunds, 114
+          </td>
+          <td>
+           Clark, Anthony J.
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI145  CM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI145  CM&amp;Sec=01', 'desc', '700', '420');">
+            Data Mining
+           </a>
+           <img onclick="getTextbook('CSCI145  CM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           4/18 (Reopened)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    2:45PM-4:00PM / CM Campus, The Kravis Center, 164
+          </td>
+          <td>
+           Witter, Raylen Teal
+          </td>
+          <td>
+           Non-CMC students need permission
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI145  CM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI145  CM&amp;Sec=02', 'desc', '700', '420');">
+            Data Mining
+           </a>
+           <img onclick="getTextbook('CSCI145  CM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           8/18 (Reopened)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    4:15PM-5:30PM / CM Campus, The Kravis Center, 165
+          </td>
+          <td>
+           Witter, Raylen Teal
+          </td>
+          <td>
+           Non-CMC students need permission
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI153  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI153  HM&amp;Sec=01', 'desc', '700', '420');">
+            Computer Vision
+           </a>
+           <img onclick="getTextbook('CSCI153  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -1/20 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    9:35AM-10:50AM / HM Campus, Shanahan Center, 2440
+          </td>
+          <td>
+           Wloka, Calden
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI158  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI158  HM&amp;Sec=01', 'desc', '700', '420');">
+            Machine Learning
+           </a>
+           <img onclick="getTextbook('CSCI158  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/18 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           MW    11:00AM-12:15PM / HM Campus, Shanahan Center, B442
+          </td>
+          <td>
+           Talvitie, Erin
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI158  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI158  PO&amp;Sec=01', 'desc', '700', '420');">
+            Machine Learning
+           </a>
+           <img onclick="getTextbook('CSCI158  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           9/24 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    2:45PM-4:00PM / PO Campus, Seaver Commons, 102
+          </td>
+          <td>
+           Kauchak, David R.
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Non-HMC requires PERM.
+           <br/>
+           Course has prerequisites.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI159  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI159  HM&amp;Sec=01', 'desc', '700', '420');">
+            Natural Language Processing
+           </a>
+           <img onclick="getTextbook('CSCI159  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/16 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / HM Campus, Shanahan Center, 2450
+          </td>
+          <td>
+           Chang, Jonathan Pei-Wah
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI159  HM - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI159  HM&amp;Sec=02', 'desc', '700', '420');">
+            Natural Language Processing
+           </a>
+           <img onclick="getTextbook('CSCI159  HM', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           1/16 (Reopened)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    2:45PM-4:00PM / HM Campus, Shanahan Center, 2450
+          </td>
+          <td>
+           Chang, Jonathan Pei-Wah
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI181AAPO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI181AAPO&amp;Sec=01', 'desc', '700', '420');">
+            Advanced Algorithms
+           </a>
+           <img onclick="getTextbook('CSCI181AAPO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           7/18 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / PO Campus, Estella Laboratory, 1249
+          </td>
+          <td>
+           Zlatin, Michael
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Non-HMC requires PERM.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI181APHM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI181APHM&amp;Sec=01', 'desc', '700', '420');">
+            Data Visualization
+           </a>
+           <img onclick="getTextbook('CSCI181APHM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           7/18 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           TR    1:15PM-2:30PM / HM Campus, Shanahan Center, 2461
+          </td>
+          <td>
+           Engle, Sophie
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI181ATHM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI181ATHM&amp;Sec=01', 'desc', '700', '420');">
+            Computing Education Research
+           </a>
+           <img onclick="getTextbook('CSCI181ATHM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           5/12 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           MW    1:15PM-2:30PM / HM Campus, Shanahan Center, 2471
+          </td>
+          <td>
+           Ojha, Vidushi
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI181AUHM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI181AUHM&amp;Sec=01', 'desc', '700', '420');">
+            Topics in Fnds of Computation
+           </a>
+           <img onclick="getTextbook('CSCI181AUHM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           6/16 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           MW    2:45PM-4:00PM / HM Campus, Shanahan Center, 2421
+          </td>
+          <td>
+           Bang, Lucas
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI181CAPO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI181CAPO&amp;Sec=01', 'desc', '700', '420');">
+            Computer Architecture
+           </a>
+           <img onclick="getTextbook('CSCI181CAPO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           7/18 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MWF   10:00AM-10:50AM / PO Campus, Edmunds, 101
+           <br/>
+           W     7:00PM-8:15PM / PO Campus, Edmunds, 105
+          </td>
+          <td>
+           Thomas, Samuel
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Non-HMC requires PERM.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI181NWPO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI181NWPO&amp;Sec=01', 'desc', '700', '420');">
+            Intro to Computer Networks
+           </a>
+           <img onclick="getTextbook('CSCI181NWPO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           -3/24 (Closed - Full)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           MW    7:00PM-8:15PM / PO Campus, Edmunds, 114
+          </td>
+          <td>
+           Ye, Zilong
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           Non-HMC requires PERM.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI181V HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI181V HM&amp;Sec=01', 'desc', '700', '420');">
+            Reinforcement Learning
+           </a>
+           <img onclick="getTextbook('CSCI181V HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/18 (Closed - Full)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           MW    2:45PM-4:00PM / HM Campus, Shanahan Center, 2450
+          </td>
+          <td>
+           Talvitie, Erin
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI183  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI183  HM&amp;Sec=01', 'desc', '700', '420');">
+            Computer Science Clinic I
+           </a>
+           <img onclick="getTextbook('CSCI183  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           108/150 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           T     11:00AM-12:15PM / HM Campus, Galileo Hall, MCAL
+           <br/>
+           TR    8:10AM-9:25AM / HM Campus, Arranged Location,
+          </td>
+          <td>
+           Stone, Christopher
+           <br/>
+           Staff
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI186  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI186  HM&amp;Sec=01', 'desc', '700', '420');">
+            Comp Sci Research/Indep Study
+           </a>
+           <img onclick="getTextbook('CSCI186  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           4/5 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           0 -0  / HM Campus, Arranged Location,
+          </td>
+          <td>
+           Staff
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI188  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI188  PO&amp;Sec=01', 'desc', '700', '420');">
+            Computer Science Colloquium
+           </a>
+           <img onclick="getTextbook('CSCI188  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           48/75 (Open)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           0 -0  / PO Campus, Arranged Location, ARR
+          </td>
+          <td>
+           Clark, Anthony J.
+          </td>
+          <td>
+           P/NP grading only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI190  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI190  PO&amp;Sec=01', 'desc', '700', '420');">
+            Computer Science Senior Seminar
+           </a>
+           <img onclick="getTextbook('CSCI190  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/13 (Closed - Full)
+          </td>
+          <td>
+           0.50
+          </td>
+          <td>
+           T     11:00AM-12:15PM / PO Campus, Edmunds, 129
+          </td>
+          <td>
+           Li, Jingyi
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+           <br/>
+           CSCI majors only.
+           <br/>
+           SRs only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI190  PO - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI190  PO&amp;Sec=02', 'desc', '700', '420');">
+            Computer Science Senior Seminar
+           </a>
+           <img onclick="getTextbook('CSCI190  PO', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/13 (Closed - Full)
+          </td>
+          <td>
+           0.50
+          </td>
+          <td>
+           T     11:00AM-12:15PM / PO Campus, Edmunds, 251
+          </td>
+          <td>
+           Thomas, Samuel
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+           <br/>
+           CSCI majors only.
+           <br/>
+           SRs only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI190  PO - 03
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI190  PO&amp;Sec=03', 'desc', '700', '420');">
+            Computer Science Senior Seminar
+           </a>
+           <img onclick="getTextbook('CSCI190  PO', '03');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           2/13 (Open)
+          </td>
+          <td>
+           0.50
+          </td>
+          <td>
+           R     11:00AM-12:15PM / PO Campus, Edmunds, 129
+          </td>
+          <td>
+           Thomas, Samuel
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+           <br/>
+           CSCI majors only.
+           <br/>
+           SRs only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI190  PO - 04
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI190  PO&amp;Sec=04', 'desc', '700', '420');">
+            Computer Science Senior Seminar
+           </a>
+           <img onclick="getTextbook('CSCI190  PO', '04');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/13 (Closed - Full)
+          </td>
+          <td>
+           0.50
+          </td>
+          <td>
+           T     11:00AM-12:15PM / PO Campus, Edmunds, 114
+          </td>
+          <td>
+           Clark, Anthony J.
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+           <br/>
+           CSCI majors only.
+           <br/>
+           SRs only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI190  PO - 05
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI190  PO&amp;Sec=05', 'desc', '700', '420');">
+            Computer Science Senior Seminar
+           </a>
+           <img onclick="getTextbook('CSCI190  PO', '05');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           0/13 (Closed - Full)
+          </td>
+          <td>
+           0.50
+          </td>
+          <td>
+           R     11:00AM-12:15PM / PO Campus, Edmunds, 251
+          </td>
+          <td>
+           Clark, Anthony J.
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+           <br/>
+           Course has prerequisites.
+           <br/>
+           CSCI majors only.
+           <br/>
+           SRs only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI191  PO - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI191  PO&amp;Sec=01', 'desc', '700', '420');">
+            Sr Research/Thesis Computer Sci
+           </a>
+           <img onclick="getTextbook('CSCI191  PO', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           12/15 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           0 -0  / PO Campus, Arranged Location, ARR
+          </td>
+          <td>
+           Li, Jingyi
+          </td>
+          <td>
+           Course has prerequisites.
+           <br/>
+           Letter grade only.
+           <br/>
+           By PERM only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI191  PO - 02
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI191  PO&amp;Sec=02', 'desc', '700', '420');">
+            Sr Research/Thesis Computer Sci
+           </a>
+           <img onclick="getTextbook('CSCI191  PO', '02');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           14/15 (Open)
+          </td>
+          <td>
+           1.00
+          </td>
+          <td>
+           0 -0  / PO Campus, Arranged Location, ARR
+          </td>
+          <td>
+           Birrell, Eleanor
+          </td>
+          <td>
+           Letter grade only.
+           <br/>
+           By PERM only.
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSCI195  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSCI195  HM&amp;Sec=01', 'desc', '700', '420');">
+            Computer Science Colloquium
+           </a>
+           <img onclick="getTextbook('CSCI195  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           165/297 (Open)
+          </td>
+          <td>
+           0.00
+          </td>
+          <td>
+           F     11:00AM-12:15PM / HM Campus, Shanahan Center, 1430
+          </td>
+          <td>
+           Boerkoel, James,, Jr.
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr valig="">
+          <td>
+           CSMT183  HM - 01
+          </td>
+          <td>
+           <a href="#" onclick="popUp('get_desc.php?Course=CSMT183  HM&amp;Sec=01', 'desc', '700', '420');">
+            Computer Science &amp; Math Clinic I
+           </a>
+           <img onclick="getTextbook('CSMT183  HM', '01');" src="./images/book.png" width="15px"/>
+          </td>
+          <td>
+           55/99 (Open)
+          </td>
+          <td>
+           3.00
+          </td>
+          <td>
+           T     11:00AM-12:15PM / HM Campus, Galileo Hall, MCAL
+           <br/>
+           TR    8:10AM-9:25AM / HM Campus, Arranged Location,
+          </td>
+          <td>
+           Williams, Talithia D.
+           <br/>
+           Stone, Christopher
+           <br/>
+           Staff
+          </td>
+          <td>
+          </td>
+         </tr>
+         <tr>
+          <td colspan="6">
+           65 results found
+          </td>
+         </tr>
+        </tbody>
+        <tfoot class="hide-if-no-paging">
+         <tr>
+          <td colspan="7">
+           <div id="menu">
+            <div class="pagination pagination-centered">
+            </div>
+            <div>
+            </div>
+           </div>
+          </td>
+         </tr>
+        </tfoot>
+       </table>
+      </div>
+      <script type="text/javascript">
+       function getTextbook(course_code, sec) {
+  //https://www.bkstr.com/claremontstore/course-materials-results?shopBy=course&divisionDisplayName=CLAREMONT%20MCKENNA%20COLLEGE
+  //&departmentDisplayName=GOVT&courseDisplayName=020&sectionDisplayName=01&programId=1550&termId=100078104
+
+  var div = convertDiv((course_code.substring(9, 11)).trim());
+  var dept = (course_code.substring(0, 4)).trim();
+  var course = (course_code.substring(4, 9)).trim();
+
+  var url = "https://www.bkstr.com/claremontstore/course-materials-results?shopBy=course&divisionDisplayName=" +div+ "&departmentDisplayName=" +dept+ "&courseDisplayName=" +course+ "&sectionDisplayName=" +sec+ "&programId=1550&termId=100086428";
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
+function convertDiv(div) { //for new change
+   if (div =='CM') {
+      return "CLAREMONT%20MCKENNA%20COLLEGE";
+
+   }else if (div =='HM') {
+      return "HARVEY%20MUDD%20COLLEGE";
+
+   }else if (div =='PZ') {
+      return "PITZER%20COLLEGE";
+
+   }else if (div =='PO') {
+      return "POMONA%20COLLEGE";
+
+   }else if (div =='SC') {
+      return "SCRIPPS%20COLLEGE";
+
+   }else {
+      return div;
+   }
+}
+
+function getTextbook2(course_code, sec) {
+  //BIOL002A PO-01
+  //         https://www.bkstr.com/webApp/discoverView?bookstore_id-1=994&term_id-1=SP2021&div-1=AF&dept-1=AFRI&course-1=010AC&section-1=01
+  var div = (course_code.substring(9, 11)).trim();
+  var dept = (course_code.substring(0, 4)).trim();
+  var course = (course_code.substring(4, 9)).trim();
+
+  var url = "https://www.bkstr.com/webApp/discoverView?bookstore_id-1=994&term_id-1=FA2025&div-1=" +div+ "&dept-1=" +dept+ "&course-1=" +course+ "&section-1=" +sec;
+
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
+function popUp(mylink, windowname, width, height) {
+   if (! window.focus) return true;
+   var href;
+   if (typeof(mylink) == 'string')
+      href=mylink;
+   else
+      href=mylink.href;
+
+   var left = (screen.width/2)-(width/2);
+   var top = (screen.height/2)-(height/2);
+                                            //directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no
+   var popup_window = window.open(href, windowname, "width=" +width+ ",height=" +height+ ",scrollbars=no, toolbar=no, menubar=no, resizable=yes, top=" +top+ ", left=" +left);
+   try {
+      popup_window.focus();   
+   }catch (e) {
+      alert("Pop-up Blocker is enabled! Please add this site to your exception list.");
+   }
+  
+   return false;
+}
+      </script>
+     </div>
+     <!--/span-->
+    </div>
+    <!--/row-->
+   </div>
+   <!--/box-->
+   <div id="push">
+   </div>
+  </div>
+  <!--/.fluid-container-->
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/jquery.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-transition.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-alert.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-modal.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-dropdown.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-scrollspy.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-tab.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-tooltip.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-popover.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-button.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-collapse.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-carousel.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-typeahead.js">
+  </script>
+  <!-- footable -->
+  <link href="https://webapps.cmc.edu/common/footable/css/footable-0.1.css" rel="stylesheet"/>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.filter.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.paginate.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.plugin.template.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.sortable.js">
+  </script>
+  <!--<script type="text/javascript">
+  $(document).ready(function () {
+    $(".footable").footable();
+   });
+  </script>-->
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/cmc.js">
+  </script>
+ </body>
+</html>

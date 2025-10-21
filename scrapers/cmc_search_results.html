@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Course Search - Course Search Results
+  </title>
+  <link href="css/course-search.css" rel="stylesheet" type="text/css"/>
+  <!--link href="css/footable.core.css" rel="stylesheet" type="text/css">-->
+  <script src="js/course-search.js" type="text/javascript">
+  </script>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- bootstrap -->
+  <link href="https://webapps.cmc.edu/common/bootstrap/stylesheets/css/styles.css" rel="stylesheet"/>
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+      <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/html5shiv.js"></script>
+    <![endif]-->
+  <!-- Fav and touch icons -->
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-114-precomposed.png" rel="apple-touch-icon-precomposed" sizes="114x114"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/apple-touch-icon-57-precomposed.png" rel="apple-touch-icon-precomposed"/>
+  <link href="https://webapps.cmc.edu/common/bootstrap/images/ico/favicon.png" rel="shortcut icon"/>
+ </head>
+ <body>
+  <div class="container" id="main">
+   <div id="box">
+    <div class="row">
+     <div class="span11" id="secondary-container">
+      <style>
+       #menu ul{
+  list-style: none;
+  width: 250px;
+  word-break: break-all;
+
+  /*white-space: wrap;
+  word-wrap: break-word;
+  overflow-x: scroll;*/
+
+
+}
+#menu li{
+  display: inline;
+  /*padding-left: 15px;*/
+  font-weight:bold;
+
+  width: 25px;
+  float: left;
+      </style>
+      <div class="page-header">
+       <h4>
+        Course Search Results - FA 2025
+       </h4>
+      </div>
+      <div>
+      </div>
+      <div>
+       <span style="float:right">
+        <font size="+1">
+         <a href="form.php">
+          Search Again
+         </a>
+        </font>
+       </span>
+       <table class="table footable table-bordered" data-page-navigation=".pagination" data-page-size="20">
+        <thead>
+         <tr valign="top">
+          <th>
+           Course - Section
+          </th>
+          <th>
+           Title
+          </th>
+          <th data-hide="phone">
+           Seats Available
+          </th>
+          <th data-hide="phone">
+           Credit
+          </th>
+          <th data-hide="phone">
+           Meetings
+          </th>
+          <th data-hide="phone">
+           Instructors
+          </th>
+          <th data-hide="phone">
+           Notes
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td colspan="6">
+           No result found
+          </td>
+         </tr>
+        </tbody>
+        <tfoot class="hide-if-no-paging">
+         <tr>
+          <td colspan="7">
+           <div id="menu">
+            <div class="pagination pagination-centered">
+            </div>
+            <div>
+            </div>
+           </div>
+          </td>
+         </tr>
+        </tfoot>
+       </table>
+      </div>
+      <script type="text/javascript">
+       function getTextbook(course_code, sec) {
+  //https://www.bkstr.com/claremontstore/course-materials-results?shopBy=course&divisionDisplayName=CLAREMONT%20MCKENNA%20COLLEGE
+  //&departmentDisplayName=GOVT&courseDisplayName=020&sectionDisplayName=01&programId=1550&termId=100078104
+
+  var div = convertDiv((course_code.substring(9, 11)).trim());
+  var dept = (course_code.substring(0, 4)).trim();
+  var course = (course_code.substring(4, 9)).trim();
+
+  var url = "https://www.bkstr.com/claremontstore/course-materials-results?shopBy=course&divisionDisplayName=" +div+ "&departmentDisplayName=" +dept+ "&courseDisplayName=" +course+ "&sectionDisplayName=" +sec+ "&programId=1550&termId=100086428";
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
+function convertDiv(div) { //for new change
+   if (div =='CM') {
+      return "CLAREMONT%20MCKENNA%20COLLEGE";
+
+   }else if (div =='HM') {
+      return "HARVEY%20MUDD%20COLLEGE";
+
+   }else if (div =='PZ') {
+      return "PITZER%20COLLEGE";
+
+   }else if (div =='PO') {
+      return "POMONA%20COLLEGE";
+
+   }else if (div =='SC') {
+      return "SCRIPPS%20COLLEGE";
+
+   }else {
+      return div;
+   }
+}
+
+function getTextbook2(course_code, sec) {
+  //BIOL002A PO-01
+  //         https://www.bkstr.com/webApp/discoverView?bookstore_id-1=994&term_id-1=SP2021&div-1=AF&dept-1=AFRI&course-1=010AC&section-1=01
+  var div = (course_code.substring(9, 11)).trim();
+  var dept = (course_code.substring(0, 4)).trim();
+  var course = (course_code.substring(4, 9)).trim();
+
+  var url = "https://www.bkstr.com/webApp/discoverView?bookstore_id-1=994&term_id-1=FA2025&div-1=" +div+ "&dept-1=" +dept+ "&course-1=" +course+ "&section-1=" +sec;
+
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
+function popUp(mylink, windowname, width, height) {
+   if (! window.focus) return true;
+   var href;
+   if (typeof(mylink) == 'string')
+      href=mylink;
+   else
+      href=mylink.href;
+
+   var left = (screen.width/2)-(width/2);
+   var top = (screen.height/2)-(height/2);
+                                            //directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no
+   var popup_window = window.open(href, windowname, "width=" +width+ ",height=" +height+ ",scrollbars=no, toolbar=no, menubar=no, resizable=yes, top=" +top+ ", left=" +left);
+   try {
+      popup_window.focus();   
+   }catch (e) {
+      alert("Pop-up Blocker is enabled! Please add this site to your exception list.");
+   }
+  
+   return false;
+}
+      </script>
+     </div>
+     <!--/span-->
+    </div>
+    <!--/row-->
+   </div>
+   <!--/box-->
+   <div id="push">
+   </div>
+  </div>
+  <!--/.fluid-container-->
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/jquery.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-transition.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-alert.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-modal.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-dropdown.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-scrollspy.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-tab.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-tooltip.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-popover.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-button.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-collapse.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-carousel.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/bootstrap-typeahead.js">
+  </script>
+  <!-- footable -->
+  <link href="https://webapps.cmc.edu/common/footable/css/footable-0.1.css" rel="stylesheet"/>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.filter.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.paginate.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.plugin.template.js">
+  </script>
+  <script src="https://webapps.cmc.edu/common/footable/js/footable.sortable.js">
+  </script>
+  <!--<script type="text/javascript">
+  $(document).ready(function () {
+    $(".footable").footable();
+   });
+  </script>-->
+  <script src="https://webapps.cmc.edu/common/bootstrap/javascripts/cmc.js">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,587 @@
+[
+  {
+    "course_section": "CSCI005  HM - 01",
+    "title": "Introduction to Computer Science",
+    "seats_available": "11/204 (Open)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   8:10AM-9:25AM / HM Campus, Galileo Hall, MCAL",
+    "instructors": "Dodds, Zachary B.Medero, Julie",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI005  HM - 02",
+    "title": "Introduction to Computer Science",
+    "seats_available": "-2/40 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   8:10AM-9:25AM / HM Campus, Shanahan Center, 2460",
+    "instructors": "Medero, Julie",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI005  HM - 03",
+    "title": "Introduction to Computer Science",
+    "seats_available": "0/42 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   8:10AM-9:25AM / HM Campus, Shanahan Center, 2454",
+    "instructors": "Wiedermann, Benjamin",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI005L HM - 01",
+    "title": "Intro to Computer Science Lab",
+    "seats_available": "-2/120 (Closed - Full)",
+    "credit": "0.00",
+    "meetings": "T\u00a0\u00a0   1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 203T\u00a0\u00a0   1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 204T\u00a0\u00a0   1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 205",
+    "instructors": "Staff",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI005L HM - 02",
+    "title": "Intro to Computer Science Lab",
+    "seats_available": "3/120 (Reopened)",
+    "credit": "0.00",
+    "meetings": "W\u00a0\u00a0   1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 203W\u00a0\u00a0   1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 204W\u00a0\u00a0   1:15PM-3:15PM / HM Campus, McGregor CompSci Center, 205",
+    "instructors": "Staff",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI005L HM - 03",
+    "title": "Intro to Computer Science Lab",
+    "seats_available": "70/108 (Open)",
+    "credit": "0.00",
+    "meetings": "0 -0  / HM Campus, ,",
+    "instructors": "Staff",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI036  CM - 01",
+    "title": "Foundations of Data Science",
+    "seats_available": "-3/18 (Closed - Full)",
+    "credit": "1.00",
+    "meetings": "MWF   9:00AM-9:50AM / CM Campus, The Kravis Center, 165",
+    "instructors": "Huber, Mark",
+    "notes": "Instructor permission required"
+  },
+  {
+    "course_section": "CSCI040  CM - 01",
+    "title": "Computing for the Web",
+    "seats_available": "-2/18 (Closed - Full)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   11:00AM-12:15PM / CM Campus, Roberts North, 12",
+    "instructors": "Ahmadnia, Benyamin Bosari",
+    "notes": "Non-CMC students need permission"
+  },
+  {
+    "course_section": "CSCI040  CM - 02",
+    "title": "Computing for the Web",
+    "seats_available": "-2/18 (Closed - Full)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / CM Campus, Roberts North, 12",
+    "instructors": "Ahmadnia, Benyamin Bosari",
+    "notes": "Non-CMC students need permission"
+  },
+  {
+    "course_section": "CSCI046  CM - 01",
+    "title": "Data Structures and Algorithms",
+    "seats_available": "0/18 (Closed - Full)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   9:35AM-10:50AM / CM Campus, Roberts North, 12",
+    "instructors": "Ahmadnia, Benyamin Bosari",
+    "notes": "Non-CMC students need permission"
+  },
+  {
+    "course_section": "CSCI046L CM - 01",
+    "title": "Data Structures & Algorithms Lab",
+    "seats_available": "5/18 (Open)",
+    "credit": "0.00",
+    "meetings": "F\u00a0\u00a0   9:35AM-10:50AM / CM Campus, Roberts North, 12",
+    "instructors": "Ahmadnia, Benyamin Bosari",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI050  PO - 01",
+    "title": "Fundamentals of Programming",
+    "seats_available": "3/24 (Open)",
+    "credit": "0.50",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / PO Campus, Edmunds, 114",
+    "instructors": "Osborn, Joseph C",
+    "notes": "Letter grade only.Non-PO requires PERM."
+  },
+  {
+    "course_section": "CSCI050  PO - 02",
+    "title": "Fundamentals of Programming",
+    "seats_available": "5/24 (Closed)",
+    "credit": "0.50",
+    "meetings": "TR\u00a0   2:45PM-4:00PM / PO Campus, Edmunds, 114",
+    "instructors": "Osborn, Joseph C",
+    "notes": "Letter grade only.Non-PO requires PERM."
+  },
+  {
+    "course_section": "CSCI051  PO - 01",
+    "title": "Introduction to Computer Science",
+    "seats_available": "5/30 (Open)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   9:35AM-10:50AM / PO Campus, Estella Laboratory, 2113",
+    "instructors": "Papoutsaki, Alexandra",
+    "notes": "Letter grade only.Lab required - CSCI051 LPONon-PO requires PERM."
+  },
+  {
+    "course_section": "CSCI051 LPO - 01",
+    "title": "Lab, Intro to Computer Science",
+    "seats_available": "3/15 (Closed)",
+    "credit": "0.00",
+    "meetings": "F\u00a0\u00a0   1:15PM-2:30PM / PO Campus, Edmunds, 229",
+    "instructors": "Papoutsaki, Alexandra",
+    "notes": "Letter grade only.Must be enrolled in CSCI051  PO."
+  },
+  {
+    "course_section": "CSCI051 LPO - 02",
+    "title": "Lab, Intro to Computer Science",
+    "seats_available": "3/15 (Open)",
+    "credit": "0.00",
+    "meetings": "F\u00a0\u00a0   2:45PM-4:00PM / PO Campus, Edmunds, 229",
+    "instructors": "Papoutsaki, Alexandra",
+    "notes": "Letter grade only.Must be enrolled in CSCI051  PO."
+  },
+  {
+    "course_section": "CSCI051A PO - 01",
+    "title": "Intro to CS with Topics in AI",
+    "seats_available": "2/30 (Open)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / PO Campus, Edmunds, 101",
+    "instructors": "Kauchak, David R.",
+    "notes": "Letter grade only.Lab required - CSCI051ALPONon-PO requires PERM."
+  },
+  {
+    "course_section": "CSCI051ALPO - 01",
+    "title": "Lab, Intro to CS w/Topics in AI",
+    "seats_available": "1/15 (Closed)",
+    "credit": "0.00",
+    "meetings": "W\u00a0\u00a0   1:15PM-2:30PM / PO Campus, Edmunds, 219",
+    "instructors": "Kauchak, David R.",
+    "notes": "Must be enrolled in CSCI051A PO."
+  },
+  {
+    "course_section": "CSCI051ALPO - 02",
+    "title": "Lab, Intro to CS w/Topics in AI",
+    "seats_available": "2/15 (Closed)",
+    "credit": "0.00",
+    "meetings": "W\u00a0\u00a0   2:45PM-4:00PM / PO Campus, Edmunds, 229",
+    "instructors": "Kauchak, David R.",
+    "notes": "Must be enrolled in CSCI051A PO."
+  },
+  {
+    "course_section": "CSCI054  PO - 01",
+    "title": "Math Foundations of CS",
+    "seats_available": "4/30 (Open)",
+    "credit": "1.00",
+    "meetings": "MWF   10:00AM-10:50AM / PO Campus, Edmunds, 114",
+    "instructors": "Chen, Tzu-Yi",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites."
+  },
+  {
+    "course_section": "CSCI060  HM - 01",
+    "title": "Principles of Computer Science",
+    "seats_available": "-2/27 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   2:45PM-4:00PM / HM Campus, Shanahan Center, 3460",
+    "instructors": "Trushkowsky, Katherine",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI060  HM - 02",
+    "title": "Principles of Computer Science",
+    "seats_available": "2/27 (Reopened)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   4:15PM-5:30PM / HM Campus, Shanahan Center, 3460",
+    "instructors": "Engle, Sophie",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI062  PO - 01",
+    "title": "Data Structures Adv Programming",
+    "seats_available": "4/30 (Open)",
+    "credit": "1.00",
+    "meetings": "MW\u00a0   2:45PM-4:00PM / PO Campus, Edmunds, 114",
+    "instructors": "Li, Jingyi",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites.Lab required - CSCI062 LPO"
+  },
+  {
+    "course_section": "CSCI062 LPO - 01",
+    "title": "Data Structures/Adv Program Lab",
+    "seats_available": "-2/15 (Closed - Full)",
+    "credit": "0.00",
+    "meetings": "W\u00a0\u00a0   7:00PM-8:15PM / PO Campus, Edmunds, 219",
+    "instructors": "Li, Jingyi",
+    "notes": "By PERM only.Must be enrolled in CSCI062  PO."
+  },
+  {
+    "course_section": "CSCI062 LPO - 02",
+    "title": "Data Structures/Adv Program Lab",
+    "seats_available": "6/15 (Open)",
+    "credit": "0.00",
+    "meetings": "W\u00a0\u00a0   8:30PM-9:45PM / PO Campus, Edmunds, 229",
+    "instructors": "Li, Jingyi",
+    "notes": "By PERM only.Must be enrolled in CSCI062  PO."
+  },
+  {
+    "course_section": "CSCI070  HM - 01",
+    "title": "Data Structures/Prgm Development",
+    "seats_available": "-1/24 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   2:45PM-4:00PM / HM Campus, McGregor CompSci Center, 206",
+    "instructors": "O'Neill, Melissa E.",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI070  HM - 02",
+    "title": "Data Structures/Prgm Development",
+    "seats_available": "5/26 (Open)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   4:15PM-5:30PM / HM Campus, McGregor CompSci Center, 206",
+    "instructors": "O'Neill, Melissa E.",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI081  HM - 01",
+    "title": "Computability and Logic",
+    "seats_available": "19/30 (Open)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 1480",
+    "instructors": "Ojha, VidushiBang, Lucas",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI081  HM - 02",
+    "title": "Computability and Logic",
+    "seats_available": "7/30 (Open)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   2:45PM-4:00PM / HM Campus, Shanahan Center, 1480",
+    "instructors": "Ojha, VidushiBang, Lucas",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI101  PO - 01",
+    "title": "Intro to Languages and Theory",
+    "seats_available": "7/20 (Open)",
+    "credit": "1.00",
+    "meetings": "MW\u00a0   1:15PM-2:30PM / PO Campus, Edmunds, 101",
+    "instructors": "Chen, Tzu-YiZlatin, Michael",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites."
+  },
+  {
+    "course_section": "CSCI101  PO - 02",
+    "title": "Intro to Languages and Theory",
+    "seats_available": "7/20 (Open)",
+    "credit": "1.00",
+    "meetings": "MW\u00a0   2:45PM-4:00PM / PO Campus, Edmunds, 101",
+    "instructors": "Chen, Tzu-YiZlatin, Michael",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites."
+  },
+  {
+    "course_section": "CSCI105  HM - 01",
+    "title": "Computer Systems",
+    "seats_available": "6/30 (Open)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 3460F\u00a0\u00a0   1:15PM-2:30PM / HM Campus, McGregor CompSci Center, 203F\u00a0\u00a0   1:15PM-2:30PM / HM Campus, McGregor CompSci Center, 204",
+    "instructors": "Trushkowsky, Katherine",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI105  PO - 01",
+    "title": "Computer Systems",
+    "seats_available": "-2/25 (Closed - Full)",
+    "credit": "1.00",
+    "meetings": "MW\u00a0   1:15PM-2:30PM / PO Campus, Edmunds, 105",
+    "instructors": "Osborn, Joseph C",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites.Lab required - CSCI105 LPO"
+  },
+  {
+    "course_section": "CSCI105 LPO - 01",
+    "title": "Computer Systems, Lab",
+    "seats_available": "-2/25 (Closed - Full)",
+    "credit": "0.00",
+    "meetings": "F\u00a0\u00a0   1:15PM-2:30PM / PO Campus, Edmunds, 105",
+    "instructors": "Osborn, Joseph C",
+    "notes": "By PERM only.Must be enrolled in CSCI105  PO."
+  },
+  {
+    "course_section": "CSCI120  HM - 01",
+    "title": "Human-Centered Computing Methods",
+    "seats_available": "-1/18 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 2425",
+    "instructors": "Kirabo, Lynn",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI123  HM - 01",
+    "title": "Comput Practices/Projects/People",
+    "seats_available": "1/20 (Reopened)",
+    "credit": "3.00",
+    "meetings": "MW\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 2461",
+    "instructors": "Kirabo, Lynn",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI140  HM - 01",
+    "title": "Algorithms",
+    "seats_available": "-1/31 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "MW\u00a0   9:35AM-10:50AM / HM Campus, Shanahan Center, B480",
+    "instructors": "Bachman, DavidRandolph, Tim",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI140  HM - 02",
+    "title": "Algorithms",
+    "seats_available": "-3/30 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "MW\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 2475",
+    "instructors": "Randolph, TimBachman, David",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI140  PO - 01",
+    "title": "Algorithms",
+    "seats_available": "4/25 (Open)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   9:35AM-10:50AM / PO Campus, Edmunds, 114",
+    "instructors": "Clark, Anthony J.",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites."
+  },
+  {
+    "course_section": "CSCI145  CM - 01",
+    "title": "Data Mining",
+    "seats_available": "4/18 (Reopened)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   2:45PM-4:00PM / CM Campus, The Kravis Center, 164",
+    "instructors": "Witter, Raylen Teal",
+    "notes": "Non-CMC students need permission"
+  },
+  {
+    "course_section": "CSCI145  CM - 02",
+    "title": "Data Mining",
+    "seats_available": "8/18 (Reopened)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   4:15PM-5:30PM / CM Campus, The Kravis Center, 165",
+    "instructors": "Witter, Raylen Teal",
+    "notes": "Non-CMC students need permission"
+  },
+  {
+    "course_section": "CSCI153  HM - 01",
+    "title": "Computer Vision",
+    "seats_available": "-1/20 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   9:35AM-10:50AM / HM Campus, Shanahan Center, 2440",
+    "instructors": "Wloka, Calden",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI158  HM - 01",
+    "title": "Machine Learning",
+    "seats_available": "0/18 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "MW\u00a0   11:00AM-12:15PM / HM Campus, Shanahan Center, B442",
+    "instructors": "Talvitie, Erin",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI158  PO - 01",
+    "title": "Machine Learning",
+    "seats_available": "9/24 (Open)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   2:45PM-4:00PM / PO Campus, Seaver Commons, 102",
+    "instructors": "Kauchak, David R.",
+    "notes": "Letter grade only.Non-HMC requires PERM.Course has prerequisites."
+  },
+  {
+    "course_section": "CSCI159  HM - 01",
+    "title": "Natural Language Processing",
+    "seats_available": "0/16 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 2450",
+    "instructors": "Chang, Jonathan Pei-Wah",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI159  HM - 02",
+    "title": "Natural Language Processing",
+    "seats_available": "1/16 (Reopened)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   2:45PM-4:00PM / HM Campus, Shanahan Center, 2450",
+    "instructors": "Chang, Jonathan Pei-Wah",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI181AAPO - 01",
+    "title": "Advanced Algorithms",
+    "seats_available": "7/18 (Open)",
+    "credit": "1.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / PO Campus, Estella Laboratory, 1249",
+    "instructors": "Zlatin, Michael",
+    "notes": "Letter grade only.Non-HMC requires PERM."
+  },
+  {
+    "course_section": "CSCI181APHM - 01",
+    "title": "Data Visualization",
+    "seats_available": "7/18 (Open)",
+    "credit": "3.00",
+    "meetings": "TR\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 2461",
+    "instructors": "Engle, Sophie",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI181ATHM - 01",
+    "title": "Computing Education Research",
+    "seats_available": "5/12 (Open)",
+    "credit": "3.00",
+    "meetings": "MW\u00a0   1:15PM-2:30PM / HM Campus, Shanahan Center, 2471",
+    "instructors": "Ojha, Vidushi",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI181AUHM - 01",
+    "title": "Topics in Fnds of Computation",
+    "seats_available": "6/16 (Open)",
+    "credit": "3.00",
+    "meetings": "MW\u00a0   2:45PM-4:00PM / HM Campus, Shanahan Center, 2421",
+    "instructors": "Bang, Lucas",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI181CAPO - 01",
+    "title": "Computer Architecture",
+    "seats_available": "7/18 (Open)",
+    "credit": "1.00",
+    "meetings": "MWF   10:00AM-10:50AM / PO Campus, Edmunds, 101W\u00a0\u00a0   7:00PM-8:15PM / PO Campus, Edmunds, 105",
+    "instructors": "Thomas, Samuel",
+    "notes": "Letter grade only.Non-HMC requires PERM."
+  },
+  {
+    "course_section": "CSCI181NWPO - 01",
+    "title": "Intro to Computer Networks",
+    "seats_available": "-3/24 (Closed - Full)",
+    "credit": "1.00",
+    "meetings": "MW\u00a0   7:00PM-8:15PM / PO Campus, Edmunds, 114",
+    "instructors": "Ye, Zilong",
+    "notes": "Letter grade only.Non-HMC requires PERM."
+  },
+  {
+    "course_section": "CSCI181V HM - 01",
+    "title": "Reinforcement Learning",
+    "seats_available": "0/18 (Closed - Full)",
+    "credit": "3.00",
+    "meetings": "MW\u00a0   2:45PM-4:00PM / HM Campus, Shanahan Center, 2450",
+    "instructors": "Talvitie, Erin",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI183  HM - 01",
+    "title": "Computer Science Clinic I",
+    "seats_available": "108/150 (Open)",
+    "credit": "3.00",
+    "meetings": "T\u00a0\u00a0   11:00AM-12:15PM / HM Campus, Galileo Hall, MCALTR\u00a0   8:10AM-9:25AM / HM Campus, Arranged Location,",
+    "instructors": "Stone, ChristopherStaff",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI186  HM - 01",
+    "title": "Comp Sci Research/Indep Study",
+    "seats_available": "4/5 (Open)",
+    "credit": "3.00",
+    "meetings": "0 -0  / HM Campus, Arranged Location,",
+    "instructors": "Staff",
+    "notes": ""
+  },
+  {
+    "course_section": "CSCI188  PO - 01",
+    "title": "Computer Science Colloquium",
+    "seats_available": "48/75 (Open)",
+    "credit": "0.00",
+    "meetings": "0 -0  / PO Campus, Arranged Location, ARR",
+    "instructors": "Clark, Anthony J.",
+    "notes": "P/NP grading only."
+  },
+  {
+    "course_section": "CSCI190  PO - 01",
+    "title": "Computer Science Senior Seminar",
+    "seats_available": "0/13 (Closed - Full)",
+    "credit": "0.50",
+    "meetings": "T\u00a0\u00a0   11:00AM-12:15PM / PO Campus, Edmunds, 129",
+    "instructors": "Li, Jingyi",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites.CSCI majors only.SRs only."
+  },
+  {
+    "course_section": "CSCI190  PO - 02",
+    "title": "Computer Science Senior Seminar",
+    "seats_available": "0/13 (Closed - Full)",
+    "credit": "0.50",
+    "meetings": "T\u00a0\u00a0   11:00AM-12:15PM / PO Campus, Edmunds, 251",
+    "instructors": "Thomas, Samuel",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites.CSCI majors only.SRs only."
+  },
+  {
+    "course_section": "CSCI190  PO - 03",
+    "title": "Computer Science Senior Seminar",
+    "seats_available": "2/13 (Open)",
+    "credit": "0.50",
+    "meetings": "R\u00a0\u00a0   11:00AM-12:15PM / PO Campus, Edmunds, 129",
+    "instructors": "Thomas, Samuel",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites.CSCI majors only.SRs only."
+  },
+  {
+    "course_section": "CSCI190  PO - 04",
+    "title": "Computer Science Senior Seminar",
+    "seats_available": "0/13 (Closed - Full)",
+    "credit": "0.50",
+    "meetings": "T\u00a0\u00a0   11:00AM-12:15PM / PO Campus, Edmunds, 114",
+    "instructors": "Clark, Anthony J.",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites.CSCI majors only.SRs only."
+  },
+  {
+    "course_section": "CSCI190  PO - 05",
+    "title": "Computer Science Senior Seminar",
+    "seats_available": "0/13 (Closed - Full)",
+    "credit": "0.50",
+    "meetings": "R\u00a0\u00a0   11:00AM-12:15PM / PO Campus, Edmunds, 251",
+    "instructors": "Clark, Anthony J.",
+    "notes": "Letter grade only.By PERM only.Course has prerequisites.CSCI majors only.SRs only."
+  },
+  {
+    "course_section": "CSCI191  PO - 01",
+    "title": "Sr Research/Thesis Computer Sci",
+    "seats_available": "12/15 (Open)",
+    "credit": "1.00",
+    "meetings": "0 -0  / PO Campus, Arranged Location, ARR",
+    "instructors": "Li, Jingyi",
+    "notes": "Course has prerequisites.Letter grade only.By PERM only."
+  },
+  {
+    "course_section": "CSCI191  PO - 02",
+    "title": "Sr Research/Thesis Computer Sci",
+    "seats_available": "14/15 (Open)",
+    "credit": "1.00",
+    "meetings": "0 -0  / PO Campus, Arranged Location, ARR",
+    "instructors": "Birrell, Eleanor",
+    "notes": "Letter grade only.By PERM only."
+  },
+  {
+    "course_section": "CSCI195  HM - 01",
+    "title": "Computer Science Colloquium",
+    "seats_available": "165/297 (Open)",
+    "credit": "0.00",
+    "meetings": "F\u00a0\u00a0   11:00AM-12:15PM / HM Campus, Shanahan Center, 1430",
+    "instructors": "Boerkoel, James,, Jr.",
+    "notes": ""
+  },
+  {
+    "course_section": "CSMT183  HM - 01",
+    "title": "Computer Science & Math Clinic I",
+    "seats_available": "55/99 (Open)",
+    "credit": "3.00",
+    "meetings": "T\u00a0\u00a0   11:00AM-12:15PM / HM Campus, Galileo Hall, MCALTR\u00a0   8:10AM-9:25AM / HM Campus, Arranged Location,",
+    "instructors": "Williams, Talithia D.Stone, ChristopherStaff",
+    "notes": ""
+  }
+]
