@@ -44,7 +44,6 @@ app-example
 *_SUMMARY.md
 *_GUIDE.md
 *_INSTRUCTIONS.md
-CLAUDE.md
 *_fix.sql
 validate_*.sql
 COMPLETE_*.sql

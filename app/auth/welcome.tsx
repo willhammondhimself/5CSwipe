@@ -65,10 +65,13 @@ export default function WelcomeScreen() {
   const flatListRef = useRef<FlatList>(null);
 
   function handleNext() {
+    console.log('🔵 Next button pressed, currentIndex:', currentIndex);
     if (currentIndex < SLIDES.length - 1) {
+      console.log('📱 Scrolling to next slide:', currentIndex + 1);
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1, animated: true });
     } else {
       // Last slide - go to onboarding
+      console.log('✅ Navigating to onboarding');
       router.replace('/auth/onboarding');
     }
   }
@@ -196,6 +199,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 40,
+    paddingVertical: 80,
   },
   iconContainer: {
     width: 160,
