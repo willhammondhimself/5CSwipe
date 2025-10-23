@@ -136,41 +136,47 @@ export default function WelcomeScreen() {
         </TouchableOpacity>
       )}
 
-      {/* Carousel */}
-      <FlatList
-        ref={flatListRef}
-        data={SLIDES}
-        renderItem={renderSlide}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        onMomentumScrollEnd={(event) => {
-          const index = Math.round(event.nativeEvent.contentOffset.x / width);
-          setCurrentIndex(index);
-        }}
-        scrollEventThrottle={16}
-      />
+      {/* Content Container - centers everything vertically */}
+      <View style={styles.contentContainer}>
+        {/* Carousel */}
+        <FlatList
+          ref={flatListRef}
+          data={SLIDES}
+          renderItem={renderSlide}
+          horizontal
+          pagingEnabled
+          scrollEnabled
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
+          onMomentumScrollEnd={(event) => {
+            const index = Math.round(event.nativeEvent.contentOffset.x / width);
+            setCurrentIndex(index);
+          }}
+          scrollEventThrottle={16}
+          style={styles.carousel}
+          contentContainerStyle={{ flexGrow: 1 }}
+        />
 
-      {/* Dots Indicator */}
-      {renderDots()}
+        {/* Dots Indicator */}
+        {renderDots()}
 
-      {/* Next/Get Started Button */}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
-          <Text style={styles.nextButtonText}>
-            {currentIndex === SLIDES.length - 1 ? 'Get Started' : 'Next'}
-          </Text>
-          <Ionicons
-            name={currentIndex === SLIDES.length - 1 ? 'checkmark-circle' : 'arrow-forward'}
-            size={24}
-            color="#FFFFFF"
-          />
-        </TouchableOpacity>
+        {/* Next/Get Started Button */}
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+            <Text style={styles.nextButtonText}>
+              {currentIndex === SLIDES.length - 1 ? 'Get Started' : 'Next'}
+            </Text>
+            <Ionicons
+              name={currentIndex === SLIDES.length - 1 ? 'checkmark-circle' : 'arrow-forward'}
+              size={24}
+              color="#FFFFFF"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -180,6 +186,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: SwipeColors.background,
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingTop: 80,
+    paddingBottom: 40,
+  },
+  carousel: {
+    flex: 1,
   },
   skipButton: {
     position: 'absolute',
@@ -195,11 +210,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   slide: {
-    flex: 1,
+    width,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 40,
-    paddingVertical: 80,
+    paddingVertical: 40,
   },
   iconContainer: {
     width: 160,
@@ -239,6 +254,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingHorizontal: 24,
     paddingBottom: 48,
+    zIndex: 100,
   },
   nextButton: {
     height: 56,
@@ -253,6 +269,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 4,
+    cursor: 'pointer',
   },
   nextButtonText: {
     fontSize: 18,

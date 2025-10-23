@@ -67,6 +67,11 @@ interface ScheduleVariantsContextType {
   // Bulk operations
   createPlanFromCourses: (name: string, courses: Course[], description?: string) => Promise<string>;
   mergePlans: (planIds: string[], newName: string) => Promise<string>;
+
+  // Sharing
+  generateShareToken: (planId: string) => Promise<string | null>;
+  makePublic: (planId: string) => Promise<boolean>;
+  makePrivate: (planId: string) => Promise<boolean>;
 }
 
 const ScheduleVariantsContext = createContext<ScheduleVariantsContextType | undefined>(undefined);
@@ -475,6 +480,72 @@ export function ScheduleVariantsProvider({
     return await createPlanFromCourses(newName, allCourses, `Merged from ${plansToMerge.length} plans`);
   };
 
+  const generateShareToken = async (planId: string): Promise<string | null> => {
+    if (!user) {
+      console.warn('⚠️ Cannot generate share token: user not authenticated');
+      return null;
+    }
+
+    // Generate a random token
+    const token = `${Date.now()}-${Math.random().toString(36).substr(2, 16)}`;
+
+    const { error } = await updateSchedulePlan(user.id, planId, {
+      shareToken: token,
+      isPublic: true,
+    });
+
+    if (error) {
+      console.error('❌ Error generating share token:', error);
+      setSyncError(error);
+      return null;
+    }
+
+    console.log('✅ Generated share token:', token);
+    await loadFromSupabase();
+    return token;
+  };
+
+  const makePublic = async (planId: string): Promise<boolean> => {
+    if (!user) return false;
+
+    const plan = plans.find(p => p.id === planId);
+    if (!plan) return false;
+
+    // Generate token if doesn't exist
+    if (!plan.shareToken) {
+      const token = await generateShareToken(planId);
+      return !!token;
+    }
+
+    const { error } = await updateSchedulePlan(user.id, planId, { isPublic: true });
+
+    if (error) {
+      console.error('❌ Error making plan public:', error);
+      setSyncError(error);
+      return false;
+    }
+
+    console.log('✅ Made plan public');
+    await loadFromSupabase();
+    return true;
+  };
+
+  const makePrivate = async (planId: string): Promise<boolean> => {
+    if (!user) return false;
+
+    const { error } = await updateSchedulePlan(user.id, planId, { isPublic: false });
+
+    if (error) {
+      console.error('❌ Error making plan private:', error);
+      setSyncError(error);
+      return false;
+    }
+
+    console.log('✅ Made plan private');
+    await loadFromSupabase();
+    return true;
+  };
+
   const activePlan = plans.find(p => p.isActive) || null;
 
   const value: ScheduleVariantsContextType = {
@@ -497,6 +568,10 @@ export function ScheduleVariantsProvider({
 
     createPlanFromCourses,
     mergePlans,
+
+    generateShareToken,
+    makePublic,
+    makePrivate,
   };
 
   return (

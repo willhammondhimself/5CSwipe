@@ -8,14 +8,15 @@ import {
   ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { 
-  CalendarDaysIcon, 
+import {
+  CalendarDaysIcon,
   BuildingLibraryIcon,
   AcademicCapIcon,
   UserIcon,
   ClockIcon,
   MapPinIcon,
-  RectangleStackIcon
+  RectangleStackIcon,
+  ShareIcon
 } from 'react-native-heroicons/outline';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { useLikedCourses } from '@/contexts/LikedCoursesContext';
@@ -27,6 +28,7 @@ import HyperscheduleCalendar from '@/components/HyperscheduleCalendar';
 import CourseSearchBar from '@/components/CourseSearchBar';
 import PlanManager from '@/components/PlanManager';
 import AcademicProgressDashboard from '@/components/AcademicProgressDashboard';
+import ShareScheduleModal from '@/components/ShareScheduleModal';
 
 export default function ScheduleScreen() {
   const { likedCourses, addLikedCourse } = useLikedCourses();
@@ -34,6 +36,7 @@ export default function ScheduleScreen() {
   const { activePlan, isLoading, updatePlanCourses } = useScheduleVariants();
   const [showPlanManager, setShowPlanManager] = useState(false);
   const [showProgressDashboard, setShowProgressDashboard] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
   const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar');
 
   // Use real Supabase data
@@ -141,13 +144,24 @@ export default function ScheduleScreen() {
               </View>
               
               {/* Progress Button */}
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.progressButton}
                 onPress={() => setShowProgressDashboard(true)}
               >
                 <AcademicCapIcon size={16} color={SwipeColors.success} />
                 <Text style={styles.progressButtonText}>Progress</Text>
               </TouchableOpacity>
+
+              {/* Share Button */}
+              {activePlan && (
+                <TouchableOpacity
+                  style={styles.shareButton}
+                  onPress={() => setShowShareModal(true)}
+                >
+                  <ShareIcon size={16} color={SwipeColors.primary} />
+                  <Text style={styles.shareButtonText}>Share</Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
         </View>
@@ -245,6 +259,16 @@ export default function ScheduleScreen() {
         onClose={() => setShowProgressDashboard(false)}
         major="Computer Science"
       />
+
+      {/* Share Schedule Modal */}
+      {activePlan && (
+        <ShareScheduleModal
+          visible={showShareModal}
+          planId={activePlan.id}
+          planName={activePlan.name}
+          onClose={() => setShowShareModal(false)}
+        />
+      )}
     </View>
   );
 }
@@ -331,6 +355,22 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '600',
     color: SwipeColors.success,
+  },
+  shareButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 105, 180, 0.1)',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 105, 180, 0.2)',
+    gap: 4,
+  },
+  shareButtonText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: SwipeColors.primary,
   },
   content: {
     flex: 1,
