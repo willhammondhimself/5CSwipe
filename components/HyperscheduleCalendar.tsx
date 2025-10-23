@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import { ExclamationTriangleIcon } from 'react-native-heroicons/solid';
 import { Course } from '@/data/mockCourses';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import {
@@ -27,6 +28,7 @@ const { width: screenWidth } = Dimensions.get('window');
 interface HyperscheduleCalendarProps {
   courses: Course[];
   onCoursePress?: (course: Course) => void;
+  onConflictPress?: (conflictingCourses: Course[]) => void;
   startHour?: number;
   endHour?: number;
 }
@@ -49,6 +51,7 @@ const SLOT_HEIGHT = (HOUR_HEIGHT * SLOT_SIZE) / 3600; // Height per 5-min slot
 export default function HyperscheduleCalendar({
   courses,
   onCoursePress,
+  onConflictPress,
   startHour = DEFAULT_START_HOUR,
   endHour = DEFAULT_END_HOUR,
 }: HyperscheduleCalendarProps) {
@@ -108,11 +111,18 @@ export default function HyperscheduleCalendar({
     const blockWidth = groupSize > 1 ? dayColumnWidth * 0.9 / groupSize : dayColumnWidth * 0.95;
     const leftOffset = groupSize > 1 ? (blockIndex * blockWidth) : dayColumnWidth * 0.025;
 
+    // Check if this block has conflicts
+    const hasConflict = groupSize > 1;
+    const conflictingCourses = hasConflict
+      ? conflictGroup!.blocks.map(b => b.course)
+      : [];
+
     return (
       <TouchableOpacity
         key={`${block.course.id}-${block.day}-${index}`}
         style={[
           styles.courseBlock,
+          hasConflict && styles.conflictBlock,
           {
             top,
             left: leftOffset,
@@ -123,9 +133,22 @@ export default function HyperscheduleCalendar({
             opacity: groupSize > 1 && blockIndex > 0 ? 0.92 : 1,
           },
         ]}
-        onPress={() => onCoursePress?.(block.course)}
+        onPress={() => {
+          if (hasConflict) {
+            onConflictPress?.(conflictingCourses);
+          } else {
+            onCoursePress?.(block.course);
+          }
+        }}
         activeOpacity={0.7}
       >
+        {/* Conflict warning icon */}
+        {hasConflict && (
+          <View style={styles.conflictIcon}>
+            <ExclamationTriangleIcon size={14} color={SwipeColors.error} />
+          </View>
+        )}
+
         <Text style={styles.courseCode} numberOfLines={1}>
           {block.course.courseCode}
         </Text>
@@ -293,5 +316,18 @@ const styles = StyleSheet.create({
     color: '#4a4a4a',
     marginTop: 2,
     fontStyle: 'italic',
+  },
+  conflictBlock: {
+    borderWidth: 2,
+    borderColor: SwipeColors.error,
+    borderLeftWidth: 3,
+  },
+  conflictIcon: {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderRadius: 10,
+    padding: 2,
   },
 });
