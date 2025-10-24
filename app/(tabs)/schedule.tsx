@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
@@ -33,14 +34,15 @@ import ShareScheduleModal from '@/components/ShareScheduleModal';
 export default function ScheduleScreen() {
   const { likedCourses, addLikedCourse } = useLikedCourses();
   const { creditSystem } = useCreditSystem();
-  const { activePlan, isLoading, updatePlanCourses } = useScheduleVariants();
+  const { activePlan, isLoading, updatePlanCourses, loadPlans } = useScheduleVariants();
   const [showPlanManager, setShowPlanManager] = useState(false);
   const [showProgressDashboard, setShowProgressDashboard] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar');
+  const [refreshing, setRefreshing] = useState(false);
 
   // Use real Supabase data
-  const { courses: realCourses } = useCourses({ semester: 'FA 2025' });
+  const { courses: realCourses, refreshCourses } = useCourses({ semester: 'FA 2025' });
 
   // Use active plan courses if available, otherwise fall back to liked courses
   const currentCourses = activePlan?.courses || likedCourses;
@@ -74,7 +76,7 @@ export default function ScheduleScreen() {
   const handleCourseAdd = (course: Course) => {
     // Check for duplicates
     const isDuplicate = currentCourses.some(existingCourse => existingCourse.id === course.id);
-    
+
     if (isDuplicate) {
       console.warn('Course already exists in schedule:', course.courseCode);
       return;
@@ -82,6 +84,18 @@ export default function ScheduleScreen() {
 
     const updatedCourses = [...currentCourses, course];
     handleScheduleChange(updatedCourses);
+  };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      await Promise.all([
+        refreshCourses(),
+        loadPlans(),
+      ]);
+    } finally {
+      setRefreshing(false);
+    }
   };
 
   const EmptyState = () => (
@@ -170,7 +184,18 @@ export default function ScheduleScreen() {
       {currentCourses.length === 0 ? (
         <EmptyState />
       ) : (
-        <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          style={styles.content}
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+              tintColor={SwipeColors.primary}
+              colors={[SwipeColors.primary]}
+            />
+          }
+        >
           {/* Course Search - HyperSchedule Style */}
           <View style={styles.searchSection}>
             <CourseSearchBar

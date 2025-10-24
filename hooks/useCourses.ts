@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Course } from '@/data/mockCourses';
 import { courseService } from '@/services/courseService';
+import { offlineStorageService } from '@/services/offlineStorageService';
+import NetInfo from '@react-native-community/netinfo';
 
 interface CourseFilters {
   school?: string;
@@ -34,40 +36,96 @@ export function useCourses(filters?: CourseFilters): UseCoursesResult {
     try {
       setLoading(true);
       setError(null);
-      
+
       console.log('🔄 Loading courses with filters:', filters);
-      
-      const courseData = forceRefresh 
-        ? await courseService.refreshCourses(filters)
-        : await courseService.getCourses(filters);
-      
-      console.log('📋 Raw course data received:', courseData.length, 'courses');
-      if (courseData.length > 0) {
-        console.log('📋 First course sample:', {
-          courseCode: courseData[0].courseCode,
-          title: courseData[0].title,
-          school: courseData[0].school,
-          semester: courseData[0].semester,
-          meetingDays: courseData[0].meetingDays,
-          courseLevel: courseData[0].courseLevel
-        });
+
+      const semester = filters?.semester || 'FA 2025';
+
+      // Check network status
+      const netState = await NetInfo.fetch();
+      const isOnline = netState.isConnected && netState.isInternetReachable !== false;
+
+      // If offline or not forcing refresh, try cache first
+      if (!isOnline || !forceRefresh) {
+        const cached = await offlineStorageService.getCachedCourses(semester);
+        if (cached && cached.courses.length > 0) {
+          console.log(`📦 Using cached courses: ${cached.courses.length} courses`);
+          setCourses(cached.courses);
+          setDataSource('cache');
+          setLoading(false);
+
+          // If online and not forcing refresh, still try to update cache in background
+          if (isOnline && !forceRefresh) {
+            console.log('🔄 Updating cache in background...');
+            courseService.getCourses(filters)
+              .then(async (freshData) => {
+                if (freshData.length > 0) {
+                  await offlineStorageService.cacheCourses(semester, freshData);
+                  setCourses(freshData);
+                  setDataSource('python-api');
+                  console.log('✅ Cache updated with fresh data');
+                }
+              })
+              .catch((err) => console.warn('⚠️ Background cache update failed:', err));
+          }
+
+          return;
+        }
       }
-      
-      // Determine data source from console logs or response metadata
-      if (courseData.length === 0) {
-        setDataSource('mock');
+
+      // If online, fetch fresh data
+      if (isOnline) {
+        const courseData = forceRefresh
+          ? await courseService.refreshCourses(filters)
+          : await courseService.getCourses(filters);
+
+        console.log('📋 Raw course data received:', courseData.length, 'courses');
+        if (courseData.length > 0) {
+          console.log('📋 First course sample:', {
+            courseCode: courseData[0].courseCode,
+            title: courseData[0].title,
+            school: courseData[0].school,
+            semester: courseData[0].semester,
+            meetingDays: courseData[0].meetingDays,
+            courseLevel: courseData[0].courseLevel
+          });
+
+          // Cache the fresh data
+          await offlineStorageService.cacheCourses(semester, courseData);
+          console.log('💾 Courses cached for offline use');
+        }
+
+        // Determine data source from console logs or response metadata
+        if (courseData.length === 0) {
+          setDataSource('mock');
+        } else {
+          setDataSource('python-api');
+        }
+
+        setCourses(courseData);
+        console.log(`✅ Loaded ${courseData.length} courses`);
       } else {
-        // We can enhance this later to get actual source info
-        setDataSource('python-api'); // Assume Python API for now since Supabase is empty
+        // Offline with no cache
+        console.log('📵 Offline with no cached data');
+        setError('No internet connection. Please try again when online.');
       }
-      
-      setCourses(courseData);
-      console.log(`✅ Loaded ${courseData.length} courses`);
-      
+
     } catch (err) {
       console.error('❌ Error loading courses:', err);
       setError(err instanceof Error ? err.message : 'Failed to load courses');
-      // Don't clear courses on error - keep showing last good data
+
+      // On error, try to use cache as fallback
+      try {
+        const semester = filters?.semester || 'FA 2025';
+        const cached = await offlineStorageService.getCachedCourses(semester);
+        if (cached && cached.courses.length > 0) {
+          console.log('📦 Using cached courses after error');
+          setCourses(cached.courses);
+          setDataSource('cache');
+        }
+      } catch (cacheErr) {
+        console.error('❌ Cache fallback also failed:', cacheErr);
+      }
     } finally {
       setLoading(false);
     }

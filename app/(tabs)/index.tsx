@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { StyleSheet, View, Text, StatusBar, TouchableOpacity, Dimensions, Platform } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, TouchableOpacity, Dimensions, Platform, ScrollView, RefreshControl } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import SwipeableStack from '@/components/SwipeableStack';
 import SearchModal from '@/components/SearchModal';
@@ -20,6 +20,7 @@ export default function HomeScreen() {
   const [selectedCourseForPerm, setSelectedCourseForPerm] = useState<Course | null>(null);
   const [showProgressDashboard, setShowProgressDashboard] = useState(false);
   const [viewMode, setViewMode] = useState<'swipe' | 'calendar'>('swipe');
+  const [refreshing, setRefreshing] = useState(false);
   const { likedCourses, superLikedCourses, addLikedCourse, addSuperLikedCourse } = useLikedCourses();
   const { filters, getFilteredCourses, resetFilters } = useFilters();
   const { setPremiumStatus } = usePremium();
@@ -87,6 +88,15 @@ export default function HomeScreen() {
     setShowPermModal(false);
   };
 
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      await refreshCourses();
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -142,14 +152,26 @@ export default function HomeScreen() {
           </View>
 
           {/* Swipeable Cards */}
-          <View style={styles.stackContainer}>
+          <ScrollView
+            style={styles.stackContainer}
+            contentContainerStyle={styles.stackContent}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={handleRefresh}
+                tintColor={SwipeColors.primary}
+                colors={[SwipeColors.primary]}
+              />
+            }
+            showsVerticalScrollIndicator={false}
+          >
             <SwipeableStack
               courses={filteredCourses}
               onSwipeRight={handleSwipeRight}
               onSwipeLeft={handleSwipeLeft}
               onSuperLike={handleSuperLike}
             />
-          </View>
+          </ScrollView>
         </>
       )}
 
@@ -271,5 +293,8 @@ const styles = StyleSheet.create({
   },
   stackContainer: {
     flex: 1,
+  },
+  stackContent: {
+    flexGrow: 1,
   },
 });

@@ -20,6 +20,9 @@ import {
   removeLikedCourse as removeLikedCourseDB,
   subscribeLikedCourses,
 } from '../services/likedCoursesService';
+import { syncQueueService } from '../services/syncQueueService';
+import { offlineStorageService } from '../services/offlineStorageService';
+import NetInfo from '@react-native-community/netinfo';
 
 interface LikedCoursesContextType {
   likedCourses: Course[];
@@ -50,6 +53,7 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (user) {
       loadFromSupabase();
+      processSyncQueue(); // Process any queued mutations on mount
 
       // Subscribe to real-time updates
       const unsubscribe = subscribeLikedCourses(user.id, () => {
@@ -75,6 +79,32 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
     }
   }, [likedCourses, superLikedCourses, loading]);
 
+  const processSyncQueue = async () => {
+    if (!user) return;
+
+    console.log('🔄 Processing sync queue for liked courses...');
+
+    const result = await syncQueueService.processQueue(async (mutation) => {
+      switch (mutation.type) {
+        case 'LIKE_COURSE':
+          await addLikedCourseDB(mutation.userId, mutation.payload.course, mutation.payload.isSuperLike);
+          break;
+        case 'UNLIKE_COURSE':
+          await removeLikedCourseDB(mutation.userId, mutation.payload.courseId);
+          break;
+      }
+    });
+
+    if (result.processed > 0) {
+      console.log(`✅ Processed ${result.processed} queued mutations`);
+      await loadFromSupabase(); // Reload fresh data after sync
+    }
+
+    if (result.failed > 0) {
+      console.warn(`⚠️ ${result.failed} mutations failed to sync`);
+    }
+  };
+
   const loadFromSupabase = async () => {
     if (!user) return;
 
@@ -87,12 +117,21 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
       if (error) {
         console.error('❌ Error loading liked courses from Supabase:', error);
         setSyncError(error);
-        // Fall back to AsyncStorage
-        await loadFromAsyncStorage();
+        // Fall back to cache
+        const cached = await offlineStorageService.getCachedLikedCourses(user.id);
+        if (cached) {
+          setLikedCourses(cached.filter(c => !c.isSuperLike));
+          setSuperLikedCourses(cached.filter(c => c.isSuperLike));
+        } else {
+          await loadFromAsyncStorage();
+        }
       } else {
         console.log(`✅ Loaded ${courses.length} liked courses from Supabase`);
         setLikedCourses(courses);
         setSuperLikedCourses(superLiked);
+
+        // Cache for offline use
+        await offlineStorageService.cacheLikedCourses(user.id, [...courses, ...superLiked]);
       }
     } catch (error) {
       console.error('❌ Exception loading liked courses:', error);
@@ -145,14 +184,40 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
 
     // Sync to Supabase if logged in
     if (user) {
+      const netState = await NetInfo.fetch();
+      const isOnline = netState.isConnected && netState.isInternetReachable !== false;
+
+      if (!isOnline) {
+        // Queue for later sync
+        console.log('📵 Offline - queuing like mutation');
+        await syncQueueService.addToQueue({
+          type: 'LIKE_COURSE',
+          payload: { course, isSuperLike: false },
+          timestamp: Date.now(),
+          userId: user.id,
+        });
+        return;
+      }
+
       const { error } = await addLikedCourseDB(user.id, course, false);
       if (error) {
         console.error('❌ Error adding liked course:', error);
         setSyncError(error);
+
+        // Queue for retry
+        await syncQueueService.addToQueue({
+          type: 'LIKE_COURSE',
+          payload: { course, isSuperLike: false },
+          timestamp: Date.now(),
+          userId: user.id,
+        });
+
         // Revert optimistic update
         setLikedCourses(prev => prev.filter(c => c.id !== course.id));
       } else {
         console.log('✅ Added liked course to Supabase');
+        // Cache updated data
+        await offlineStorageService.cacheLikedCourses(user.id, [...likedCourses, course]);
       }
     }
   };
@@ -171,14 +236,40 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
 
     // Sync to Supabase if logged in
     if (user) {
+      const netState = await NetInfo.fetch();
+      const isOnline = netState.isConnected && netState.isInternetReachable !== false;
+
+      if (!isOnline) {
+        // Queue for later sync
+        console.log('📵 Offline - queuing super-like mutation');
+        await syncQueueService.addToQueue({
+          type: 'LIKE_COURSE',
+          payload: { course, isSuperLike: true },
+          timestamp: Date.now(),
+          userId: user.id,
+        });
+        return;
+      }
+
       const { error } = await addLikedCourseDB(user.id, course, true);
       if (error) {
         console.error('❌ Error adding super-liked course:', error);
         setSyncError(error);
+
+        // Queue for retry
+        await syncQueueService.addToQueue({
+          type: 'LIKE_COURSE',
+          payload: { course, isSuperLike: true },
+          timestamp: Date.now(),
+          userId: user.id,
+        });
+
         // Revert optimistic update
         setSuperLikedCourses(prev => prev.filter(c => c.id !== course.id));
       } else {
         console.log('✅ Added super-liked course to Supabase');
+        // Cache updated data
+        await offlineStorageService.cacheLikedCourses(user.id, [...likedCourses, ...superLikedCourses, course]);
       }
     }
   };
@@ -190,14 +281,42 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
 
     // Sync to Supabase if logged in
     if (user) {
+      const netState = await NetInfo.fetch();
+      const isOnline = netState.isConnected && netState.isInternetReachable !== false;
+
+      if (!isOnline) {
+        // Queue for later sync
+        console.log('📵 Offline - queuing unlike mutation');
+        await syncQueueService.addToQueue({
+          type: 'UNLIKE_COURSE',
+          payload: { courseId },
+          timestamp: Date.now(),
+          userId: user.id,
+        });
+        return;
+      }
+
       const { error } = await removeLikedCourseDB(user.id, courseId);
       if (error) {
         console.error('❌ Error removing liked course:', error);
         setSyncError(error);
+
+        // Queue for retry
+        await syncQueueService.addToQueue({
+          type: 'UNLIKE_COURSE',
+          payload: { courseId },
+          timestamp: Date.now(),
+          userId: user.id,
+        });
+
         // Revert optimistic update - reload from server
         await loadFromSupabase();
       } else {
         console.log('✅ Removed liked course from Supabase');
+        // Cache updated data
+        const updatedLiked = likedCourses.filter(c => c.id !== courseId);
+        const updatedSuperLiked = superLikedCourses.filter(c => c.id !== courseId);
+        await offlineStorageService.cacheLikedCourses(user.id, [...updatedLiked, ...updatedSuperLiked]);
       }
     }
   };

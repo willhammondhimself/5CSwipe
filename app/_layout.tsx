@@ -14,6 +14,7 @@ import { PremiumProvider } from '@/contexts/PremiumContext';
 import { AcademicProfileProvider } from '@/contexts/AcademicProfileContext';
 import { ScheduleVariantsProvider } from '@/contexts/ScheduleVariantsContext';
 import AuthGuard from '@/components/AuthGuard';
+import OfflineIndicator from '@/components/OfflineIndicator';
 
 function ScheduleVariantsWrapper({ children }: { children: React.ReactNode }) {
   return (
@@ -55,6 +56,7 @@ export default function RootLayout() {
                           <Stack.Screen name="auth/email-verification" options={{ headerShown: false }} />
                           <Stack.Screen name="+not-found" />
                         </Stack>
+                        <OfflineIndicator />
                       </AuthGuard>
                       <StatusBar style="auto" />
                     </ThemeProvider>
