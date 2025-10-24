@@ -18,11 +18,14 @@ import PermModal from './PermModal';
 import CourseDetailModal from './CourseDetailModal';
 import UndoButton from './UndoButton';
 import LiquidButton from './LiquidButton';
+import CourseCardSkeleton from './CourseCardSkeleton';
+import EmptySwipeState from './EmptySwipeState';
 import { Course } from '../data/mockCourses';
 import { SwipeColors } from '../contexts/constants/Colors';
 import { generatePermRequest } from '../utils/permGenerator';
 import { useLikedCourses } from '@/contexts/LikedCoursesContext';
 import { recommendationEngine, RecommendationScore } from '../utils/recommendationEngine';
+import { useShakeDetection } from '@/hooks/useShakeDetection';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const SWIPE_THRESHOLD = screenWidth * 0.25;
@@ -34,6 +37,9 @@ interface SwipeableStackProps {
   onSwipeLeft?: (course: Course) => void;
   onSuperLike?: (course: Course) => void;
   enableRecommendations?: boolean;
+  loading?: boolean;
+  skippedCourses?: Course[];
+  onResetFilters?: () => void;
 }
 
 export default function SwipeableStack({
@@ -42,6 +48,9 @@ export default function SwipeableStack({
   onSwipeLeft,
   onSuperLike,
   enableRecommendations = true,
+  loading = false,
+  skippedCourses = [],
+  onResetFilters,
 }: SwipeableStackProps) {
   const { likedCourses } = useLikedCourses();
   const insets = useSafeAreaInsets();
@@ -133,22 +142,29 @@ export default function SwipeableStack({
     if (lastSwipedCourse && undoAction) {
       // Restore the course to the stack
       setCurrentIndex(prev => Math.max(0, prev - 1));
-      
+
       // Reset animations
       position.setValue({ x: 0, y: 0 });
       likeOpacity.setValue(0);
       nopeOpacity.setValue(0);
       superLikeOpacity.setValue(0);
-      
+
       // Clear undo state
       setLastSwipedCourse(null);
       setUndoAction(null);
       setShowUndoButton(false);
-      
+
       // Haptic feedback
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     }
   }, [lastSwipedCourse, undoAction, position, likeOpacity, nopeOpacity, superLikeOpacity]);
+
+  // Shake to undo functionality
+  useShakeDetection({
+    threshold: 2.5,
+    timeout: 1000,
+    onShake: handleUndo,
+  });
 
   // Create rotation interpolation
   const rotate = position.x.interpolate({
@@ -333,12 +349,36 @@ export default function SwipeableStack({
     }
   };
 
+  // Show loading skeletons
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.cardContainer}>
+          <View style={styles.cardWrapper}>
+            <CourseCardSkeleton />
+          </View>
+          <View style={[styles.cardWrapper, styles.secondCard]}>
+            <CourseCardSkeleton />
+          </View>
+          <View style={[styles.cardWrapper, styles.thirdCard]}>
+            <CourseCardSkeleton />
+          </View>
+        </View>
+      </View>
+    );
+  }
+
+  // Show empty state with confetti
   if (currentIndex >= orderedCourses.length) {
     return (
-      <View style={styles.emptyContainer}>
-        <Text style={styles.emptyText}>No more courses!</Text>
-        <Text style={styles.emptySubtext}>Check back later for more</Text>
-      </View>
+      <EmptySwipeState
+        onResetFilters={onResetFilters}
+        onReviewSkipped={() => {
+          // Reset to show skipped courses
+          setCurrentIndex(0);
+        }}
+        skippedCount={skippedCourses.length}
+      />
     );
   }
 

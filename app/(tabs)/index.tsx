@@ -170,6 +170,9 @@ export default function HomeScreen() {
               onSwipeRight={handleSwipeRight}
               onSwipeLeft={handleSwipeLeft}
               onSuperLike={handleSuperLike}
+              loading={loading}
+              skippedCourses={skippedCourses}
+              onResetFilters={resetFilters}
             />
           </ScrollView>
         </>
