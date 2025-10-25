@@ -9,7 +9,6 @@ import {
   Animated,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import * as Haptics from 'expo-haptics';
 import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -26,6 +25,7 @@ import { generatePermRequest } from '../utils/permGenerator';
 import { useLikedCourses } from '@/contexts/LikedCoursesContext';
 import { recommendationEngine, RecommendationScore } from '../utils/recommendationEngine';
 import { useShakeDetection } from '@/hooks/useShakeDetection';
+import { HapticPatterns } from '@/utils/hapticPatterns';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const SWIPE_THRESHOLD = screenWidth * 0.25;
@@ -155,7 +155,7 @@ export default function SwipeableStack({
       setShowUndoButton(false);
 
       // Haptic feedback
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      HapticPatterns.undo();
     }
   }, [lastSwipedCourse, undoAction, position, likeOpacity, nopeOpacity, superLikeOpacity]);
 
@@ -193,23 +193,23 @@ export default function SwipeableStack({
       }
       
       if (direction === 'right') {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticPatterns.swipeRight();
         const permRequest = generatePermRequest(currentCourse);
-        
+
         await Clipboard.setStringAsync(permRequest);
         setPermCourseCode(currentCourse.courseCode);
         setShowPermModal(true);
-        
+
         if (onSwipeRight) {
           onSwipeRight(currentCourse);
         }
       } else if (direction === 'left') {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticPatterns.swipeLeft();
         if (onSwipeLeft) {
           onSwipeLeft(currentCourse);
         }
       } else if (direction === 'up') {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        HapticPatterns.superLike();
         if (onSuperLike) {
           onSuperLike(currentCourse);
         }
@@ -247,12 +247,18 @@ export default function SwipeableStack({
           if (isAnimating.current) return;
           position.setValue({ x: gestureState.dx, y: gestureState.dy });
 
-          // Update opacity indicators
+          // Calculate velocity magnitude for enhanced feedback
+          const { vx, vy } = gestureState;
+          const velocity = Math.sqrt(vx * vx + vy * vy);
+
+          // Update opacity indicators with velocity-based intensity
+          const velocityMultiplier = velocity > 1 ? 1.3 : 1;
+
           if (gestureState.dx > 0) {
-            likeOpacity.setValue(gestureState.dx / SWIPE_THRESHOLD);
+            likeOpacity.setValue(Math.min(1, (gestureState.dx / SWIPE_THRESHOLD) * velocityMultiplier));
             nopeOpacity.setValue(0);
           } else if (gestureState.dx < 0) {
-            nopeOpacity.setValue(Math.abs(gestureState.dx) / SWIPE_THRESHOLD);
+            nopeOpacity.setValue(Math.min(1, (Math.abs(gestureState.dx) / SWIPE_THRESHOLD) * velocityMultiplier));
             likeOpacity.setValue(0);
           }
 
@@ -266,29 +272,41 @@ export default function SwipeableStack({
         onPanResponderRelease: (_, gestureState) => {
           if (isAnimating.current) return;
 
-          const shouldSwipeRight = gestureState.dx > SWIPE_THRESHOLD;
-          const shouldSwipeLeft = gestureState.dx < -SWIPE_THRESHOLD;
-          const shouldSuperLike = gestureState.dy < -SWIPE_THRESHOLD && Math.abs(gestureState.dx) < SWIPE_THRESHOLD;
+          // Calculate velocity for dynamic thresholds and animation speed
+          const { vx, vy } = gestureState;
+          const velocity = Math.abs(vx);
+          const verticalVelocity = Math.abs(vy);
+
+          // Adjust threshold based on velocity - fast swipes need less distance
+          const dynamicThreshold = velocity > 1 ? SWIPE_THRESHOLD * 0.7 : SWIPE_THRESHOLD;
+          const dynamicVerticalThreshold = verticalVelocity > 1 ? SWIPE_THRESHOLD * 0.7 : SWIPE_THRESHOLD;
+
+          // Adjust animation duration based on velocity - faster swipes = quicker animation
+          const animationDuration = velocity > 1 ? 150 : SWIPE_OUT_DURATION;
+
+          const shouldSwipeRight = gestureState.dx > dynamicThreshold;
+          const shouldSwipeLeft = gestureState.dx < -dynamicThreshold;
+          const shouldSuperLike = gestureState.dy < -dynamicVerticalThreshold && Math.abs(gestureState.dx) < SWIPE_THRESHOLD;
 
           if (shouldSwipeRight) {
             isAnimating.current = true;
             Animated.timing(position, {
               toValue: { x: screenWidth * 1.5, y: gestureState.dy + 50 },
-              duration: SWIPE_OUT_DURATION,
+              duration: animationDuration,
               useNativeDriver: false,
             }).start(() => handleSwipeComplete('right'));
           } else if (shouldSwipeLeft) {
             isAnimating.current = true;
             Animated.timing(position, {
               toValue: { x: -screenWidth * 1.5, y: gestureState.dy + 50 },
-              duration: SWIPE_OUT_DURATION,
+              duration: animationDuration,
               useNativeDriver: false,
             }).start(() => handleSwipeComplete('left'));
           } else if (shouldSuperLike) {
             isAnimating.current = true;
             Animated.timing(position, {
               toValue: { x: 0, y: -screenHeight },
-              duration: SWIPE_OUT_DURATION,
+              duration: animationDuration,
               useNativeDriver: false,
             }).start(() => handleSwipeComplete('up'));
           } else {
@@ -326,21 +344,22 @@ export default function SwipeableStack({
     if (isAnimating.current) return; // Block if already animating
     isAnimating.current = true; // Set flag before animation
 
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-
     if (action === 'left') {
+      HapticPatterns.buttonPress();
       Animated.timing(position, {
         toValue: { x: -screenWidth * 1.5, y: 50 },
         duration: SWIPE_OUT_DURATION,
         useNativeDriver: false,
       }).start(() => handleSwipeComplete('left'));
     } else if (action === 'right') {
+      HapticPatterns.buttonPress();
       Animated.timing(position, {
         toValue: { x: screenWidth * 1.5, y: 50 },
         duration: SWIPE_OUT_DURATION,
         useNativeDriver: false,
       }).start(() => handleSwipeComplete('right'));
     } else if (action === 'up') {
+      HapticPatterns.buttonPress();
       Animated.timing(position, {
         toValue: { x: 0, y: -screenHeight },
         duration: SWIPE_OUT_DURATION,

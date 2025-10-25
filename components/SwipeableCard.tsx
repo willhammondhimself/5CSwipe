@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Haptics from 'expo-haptics';
 import { 
   ExclamationTriangleIcon,
   UserIcon,
@@ -21,6 +22,7 @@ import { useCreditSystem } from '@/contexts/CreditSystemContext';
 import { usePrerequisiteValidation } from '@/hooks/usePrerequisiteValidation';
 import { useNotifications } from '@/hooks/useNotifications';
 import { mockCourses } from '@/data/mockCourses';
+import { useCardPreferences, type CardViewMode } from '@/contexts/CardPreferencesContext';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const CARD_WIDTH = screenWidth * 0.85;
@@ -41,6 +43,8 @@ interface SwipeableCardProps {
 }
 
 export default function SwipeableCard({ course, isFirst = false, onTap, likedCourses = [] }: SwipeableCardProps) {
+  const { preferences } = useCardPreferences();
+  const { viewMode, cardScale } = preferences;
   const { creditSystem } = useCreditSystem();
   const { validateCourse } = usePrerequisiteValidation(mockCourses);
   const {
@@ -50,26 +54,38 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
     hasPermission,
     isInitialized,
   } = useNotifications();
-  
+
+  // Double-tap detection
+  const lastTap = useRef<number>(0);
+  const tapTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const schoolColor = SwipeColors.schools[course.school];
   const spotsLeft = course.enrollmentCap - course.enrollmentCurrent;
   const isFull = spotsLeft <= 0;
   const enrollmentPercentage = (course.enrollmentCurrent / course.enrollmentCap) * 100;
-  
+
   const conflicts = findScheduleConflicts(course, likedCourses);
   const hasConflict = conflicts.length > 0;
-  
+
   // Validate prerequisites
   const prerequisiteValidation = validateCourse(course);
   const hasPrereqIssues = !prerequisiteValidation.validation.isValid;
   const hasPrereqWarnings = prerequisiteValidation.validation.warnings.length > 0;
-  
+
   const displayCredits = creditSystem === 'hmc' ? Math.round(course.credits / 3) || 1 : course.credits;
   const creditsLabel = creditSystem === 'hmc' ? 'HMC credits' : 'credits';
 
+  // Apply card scale from preferences
+  const scaledCardWidth = CARD_WIDTH * cardScale;
+  const scaledCardHeight = CARD_HEIGHT * cardScale;
+
+  // Determine which content to show based on view mode
+  const showFullInfo = viewMode === 'detailed';
+  const showMinimalInfo = viewMode === 'compact';
+
   // Notification subscription status
-  const hasAnySubscription = isSubscribedToCourse(course.id, 'spot_available') || 
-                            isSubscribedToCourse(course.id, 'waitlist_movement') || 
+  const hasAnySubscription = isSubscribedToCourse(course.id, 'spot_available') ||
+                            isSubscribedToCourse(course.id, 'waitlist_movement') ||
                             isSubscribedToCourse(course.id, 'course_added');
 
   const handleNotificationToggle = async (event: any) => {
@@ -77,7 +93,7 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
     if (!hasPermission || !isInitialized) {
       return;
     }
-    
+
     if (hasAnySubscription) {
       // Unsubscribe from all types
       await toggleCourseSubscription(course, 'spot_available');
@@ -88,12 +104,44 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
       await quickSubscribeToCourse(course);
     }
   };
+
+  // Double-tap handler
+  const handlePress = () => {
+    if (!onTap) return;
+
+    const now = Date.now();
+    const DOUBLE_TAP_DELAY = 300;
+
+    if (now - lastTap.current < DOUBLE_TAP_DELAY) {
+      // Double tap detected - open details immediately
+      if (tapTimeout.current) {
+        clearTimeout(tapTimeout.current);
+        tapTimeout.current = null;
+      }
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      onTap();
+    } else {
+      // Single tap - delay to check for double tap
+      tapTimeout.current = setTimeout(() => {
+        // Could add single-tap behavior here if needed
+        tapTimeout.current = null;
+      }, DOUBLE_TAP_DELAY);
+    }
+
+    lastTap.current = now;
+  };
   
   return (
-    <TouchableOpacity activeOpacity={0.9} onPress={onTap} disabled={!onTap}>
+    <TouchableOpacity activeOpacity={0.9} onPress={handlePress} disabled={!onTap}>
       <LinearGradient
         colors={[SwipeColors.cardGradientStart, SwipeColors.cardGradientEnd]}
-        style={[styles.card, isFirst && styles.firstCard, hasConflict && styles.conflictCard]}
+        style={[
+          styles.card,
+          isFirst && styles.firstCard,
+          hasConflict && styles.conflictCard,
+          { width: scaledCardWidth, height: scaledCardHeight },
+          showMinimalInfo && styles.compactCard,
+        ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
@@ -234,8 +282,8 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
         </Text>
       </View>
       
-      {/* Distribution Requirements */}
-      {course.distributionReqs && course.distributionReqs.length > 0 && (
+      {/* Distribution Requirements - hide in compact mode */}
+      {!showMinimalInfo && course.distributionReqs && course.distributionReqs.length > 0 && (
         <View style={styles.reqsContainer}>
           {course.distributionReqs.slice(0, 3).map((req, index) => (
             <View key={index} style={styles.reqBadge}>
@@ -286,7 +334,7 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
         </View>
       </View>
       
-      {/* Enhanced Bottom Info */}
+      {/* Enhanced Bottom Info - show more details in detailed mode */}
       {(course.prerequisites || course.majorRequirements || course.waitlistCap) && (
         <View style={styles.prerequisitesContainer}>
           {course.prerequisites && (
@@ -295,7 +343,7 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
               <Text style={styles.prerequisites}>Prereq: {course.prerequisites}</Text>
             </View>
           )}
-          {course.majorRequirements && course.majorRequirements.length > 0 && (
+          {showFullInfo && course.majorRequirements && course.majorRequirements.length > 0 && (
             <View style={styles.prereqRow}>
               <AcademicCapIcon width={12} height={12} color={SwipeColors.success} />
               <Text style={styles.majorReq}>Counts for: {course.majorRequirements.slice(0, 2).join(', ')}</Text>
@@ -334,6 +382,9 @@ const styles = StyleSheet.create({
   firstCard: {
     shadowOpacity: 0.4,
     elevation: 20,
+  },
+  compactCard: {
+    padding: 16,
   },
   schoolBadge: {
     position: 'absolute',

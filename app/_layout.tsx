@@ -13,6 +13,7 @@ import { CreditSystemProvider } from '@/contexts/CreditSystemContext';
 import { PremiumProvider } from '@/contexts/PremiumContext';
 import { AcademicProfileProvider } from '@/contexts/AcademicProfileContext';
 import { ScheduleVariantsProvider } from '@/contexts/ScheduleVariantsContext';
+import { CardPreferencesProvider } from '@/contexts/CardPreferencesContext';
 import AuthGuard from '@/components/AuthGuard';
 import OfflineIndicator from '@/components/OfflineIndicator';
 
@@ -43,8 +44,9 @@ export default function RootLayout() {
             <CreditSystemProvider>
               <FilterProvider>
                 <LikedCoursesProvider>
-                  <ScheduleVariantsWrapper>
-                    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+                  <CardPreferencesProvider>
+                    <ScheduleVariantsWrapper>
+                      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
                       <AuthGuard>
                         <Stack>
                           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -61,12 +63,13 @@ export default function RootLayout() {
                       <StatusBar style="auto" />
                     </ThemeProvider>
                   </ScheduleVariantsWrapper>
-                </LikedCoursesProvider>
-              </FilterProvider>
-            </CreditSystemProvider>
-          </PremiumProvider>
-        </AcademicProfileProvider>
-      </AuthProvider>
+                </CardPreferencesProvider>
+              </LikedCoursesProvider>
+            </FilterProvider>
+          </CreditSystemProvider>
+        </PremiumProvider>
+      </AcademicProfileProvider>
+    </AuthProvider>
     </GestureHandlerRootView>
   );
 }
