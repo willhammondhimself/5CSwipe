@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { 
@@ -23,6 +23,7 @@ import { usePrerequisiteValidation } from '@/hooks/usePrerequisiteValidation';
 import { useNotifications } from '@/hooks/useNotifications';
 import { mockCourses } from '@/data/mockCourses';
 import { useCardPreferences, type CardViewMode } from '@/contexts/CardPreferencesContext';
+import CourseQuickActions from './CourseQuickActions';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const CARD_WIDTH = screenWidth * 0.85;
@@ -40,9 +41,20 @@ interface SwipeableCardProps {
   isFirst?: boolean;
   onTap?: () => void;
   likedCourses?: Course[];
+  onSwipeRight?: (course: Course) => void;
+  onSwipeLeft?: (course: Course) => void;
+  onSuperLike?: (course: Course) => void;
 }
 
-export default function SwipeableCard({ course, isFirst = false, onTap, likedCourses = [] }: SwipeableCardProps) {
+export default function SwipeableCard({
+  course,
+  isFirst = false,
+  onTap,
+  likedCourses = [],
+  onSwipeRight,
+  onSwipeLeft,
+  onSuperLike,
+}: SwipeableCardProps) {
   const { preferences } = useCardPreferences();
   const { viewMode, cardScale } = preferences;
   const { creditSystem } = useCreditSystem();
@@ -58,6 +70,12 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
   // Double-tap detection
   const lastTap = useRef<number>(0);
   const tapTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Long-press detection for quick actions menu
+  const [showQuickActions, setShowQuickActions] = useState(false);
+  const longPressTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pressStartTime = useRef<number>(0);
+  const LONG_PRESS_DURATION = 500; // 500ms for long press
 
   const schoolColor = SwipeColors.schools[course.school];
   const spotsLeft = course.enrollmentCap - course.enrollmentCurrent;
@@ -105,8 +123,31 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
     }
   };
 
+  // Long-press handlers
+  const handlePressIn = () => {
+    pressStartTime.current = Date.now();
+    longPressTimeout.current = setTimeout(() => {
+      // Long press detected
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      setShowQuickActions(true);
+    }, LONG_PRESS_DURATION);
+  };
+
+  const handlePressOut = () => {
+    if (longPressTimeout.current) {
+      clearTimeout(longPressTimeout.current);
+      longPressTimeout.current = null;
+    }
+  };
+
   // Double-tap handler
   const handlePress = () => {
+    // Don't process tap if it was a long press
+    const pressDuration = Date.now() - pressStartTime.current;
+    if (pressDuration >= LONG_PRESS_DURATION) {
+      return;
+    }
+
     if (!onTap) return;
 
     const now = Date.now();
@@ -132,8 +173,15 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
   };
   
   return (
-    <TouchableOpacity activeOpacity={0.9} onPress={handlePress} disabled={!onTap}>
-      <LinearGradient
+    <>
+      <TouchableOpacity
+        activeOpacity={0.9}
+        onPress={handlePress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        disabled={!onTap}
+      >
+        <LinearGradient
         colors={[SwipeColors.cardGradientStart, SwipeColors.cardGradientEnd]}
         style={[
           styles.card,
@@ -359,6 +407,18 @@ export default function SwipeableCard({ course, isFirst = false, onTap, likedCou
       )}
       </LinearGradient>
     </TouchableOpacity>
+
+    {/* Quick Actions Menu */}
+    <CourseQuickActions
+      visible={showQuickActions}
+      course={course}
+      onClose={() => setShowQuickActions(false)}
+      onLike={() => onSwipeRight?.(course)}
+      onSkip={() => onSwipeLeft?.(course)}
+      onSuperLike={() => onSuperLike?.(course)}
+      onViewDetails={onTap}
+    />
+    </>
   );
 }
 
