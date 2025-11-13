@@ -49,3 +49,4 @@ validate_*.sql
 COMPLETE_*.sql
 re_enable_*.sql
 disable_*.sql
+coverage/
