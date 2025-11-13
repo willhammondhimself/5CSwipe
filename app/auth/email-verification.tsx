@@ -186,7 +186,7 @@ export default function EmailVerificationScreen() {
           ) : (
             <>
               <Ionicons name="checkmark-circle" size={24} color="#FFFFFF" />
-              <Text style={styles.primaryButtonText}>I've Verified My Email</Text>
+              <Text style={styles.primaryButtonText}>I&apos;ve Verified My Email</Text>
             </>
           )}
         </TouchableOpacity>
@@ -213,7 +213,7 @@ export default function EmailVerificationScreen() {
 
         {/* Skip Button */}
         <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-          <Text style={styles.skipButtonText}>I'll verify later</Text>
+          <Text style={styles.skipButtonText}>I&apos;ll verify later</Text>
         </TouchableOpacity>
       </View>
 
@@ -221,7 +221,7 @@ export default function EmailVerificationScreen() {
       <View style={styles.helpContainer}>
         <Ionicons name="information-circle" size={20} color={SwipeColors.textTertiary} />
         <Text style={styles.helpText}>
-          Can't find the email? Check your spam folder or request a new one.
+          Can&apos;t find the email? Check your spam folder or request a new one.
         </Text>
       </View>
     </View>

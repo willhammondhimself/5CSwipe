@@ -245,7 +245,7 @@ export default function RecommendationInsights({
                       <Text style={styles.tipsText}>
                         • Keep swiping to improve recommendations{'\n'}
                         • Courses are automatically sorted based on your preferences{'\n'}
-                        • Super like courses you're really excited about
+                        • Super like courses you&apos;re really excited about
                       </Text>
                     </View>
                   </View>

@@ -46,7 +46,7 @@ export default function EmptySwipeState({
         <Ionicons name="checkmark-circle" size={100} color={SwipeColors.success} />
       </View>
 
-      <Text style={styles.title}>You've Reviewed All Courses!</Text>
+      <Text style={styles.title}>You&apos;ve Reviewed All Courses!</Text>
       <Text style={styles.subtitle}>
         Great job exploring your options for this semester
       </Text>

@@ -91,7 +91,7 @@ export default function NotificationSettings({ onClose }: NotificationSettingsPr
           <BellIcon width={48} height={48} color={SwipeColors.accentBlue} />
           <Text style={styles.permissionTitle}>Enable Notifications</Text>
           <Text style={styles.permissionText}>
-            Get notified when spots open up in courses you're interested in, waitlist positions change, and enrollment deadlines approach.
+            Get notified when spots open up in courses you&apos;re interested in, waitlist positions change, and enrollment deadlines approach.
           </Text>
           <TouchableOpacity
             style={styles.enableButton}

@@ -203,7 +203,7 @@ export default function OnboardingScreen() {
       case 2:
         return (
           <View style={styles.stepContent}>
-            <Text style={styles.stepDescription}>What's your major?</Text>
+            <Text style={styles.stepDescription}>What&apos;s your major?</Text>
 
             <TouchableOpacity
               style={styles.selector}
@@ -363,7 +363,7 @@ export default function OnboardingScreen() {
             <View style={styles.completionMessage}>
               <Ionicons name="checkmark-circle" size={48} color={SwipeColors.primary} />
               <Text style={styles.completionText}>
-                You're all set! Let's start swiping.
+                You&apos;re all set! Let&apos;s start swiping.
               </Text>
             </View>
           </View>

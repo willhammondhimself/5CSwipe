@@ -268,7 +268,9 @@ export default function DesktopCalendarView() {
     );
   };
 
-  // Create mobile gesture for course item
+  // TODO: Mobile gesture for course item - disabled due to hooks in non-hook function
+  // This needs to be refactored into a separate component or use refs instead of hooks
+  /*
   const createCourseGesture = (course: Course) => {
     const pressed = useSharedValue(false);
 
@@ -312,6 +314,7 @@ export default function DesktopCalendarView() {
 
     return { gesture, animatedStyle };
   };
+  */
 
   return (
     <View style={styles.container}>
@@ -364,12 +367,11 @@ export default function DesktopCalendarView() {
               );
             }
 
-            // Mobile gesture-based drag
-            const { gesture, animatedStyle } = createCourseGesture(course);
+            // Mobile gesture-based drag - temporarily disabled
+            // const { gesture, animatedStyle } = createCourseGesture(course);
 
             return (
-              <GestureDetector key={course.id} gesture={gesture}>
-                <Animated.View style={[styles.courseItem, animatedStyle]}>
+              <View key={course.id} style={styles.courseItem}>
                   <View style={styles.courseItemHeader}>
                     <Text style={styles.courseItemCode}>{course.courseCode}</Text>
                     <View style={styles.courseBadge}>
@@ -382,8 +384,7 @@ export default function DesktopCalendarView() {
                   <Text style={styles.courseItemTime}>
                     {course.meetingDays.join('')} • {course.startTime}-{course.endTime}
                   </Text>
-                </Animated.View>
-              </GestureDetector>
+              </View>
             );
           })}
         </ScrollView>

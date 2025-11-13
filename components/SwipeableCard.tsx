@@ -15,13 +15,12 @@ import {
   BellIcon
 } from 'react-native-heroicons/outline';
 import { BellIcon as BellSolidIcon } from 'react-native-heroicons/solid';
-import { Course } from '../data/mockCourses';
+import { Course , mockCourses } from '../data/mockCourses';
 import { SwipeColors } from '../contexts/constants/Colors';
 import { findScheduleConflicts } from '@/utils/scheduleUtils';
 import { useCreditSystem } from '@/contexts/CreditSystemContext';
 import { usePrerequisiteValidation } from '@/hooks/usePrerequisiteValidation';
 import { useNotifications } from '@/hooks/useNotifications';
-import { mockCourses } from '@/data/mockCourses';
 import { useCardPreferences, type CardViewMode } from '@/contexts/CardPreferencesContext';
 import CourseQuickActions from './CourseQuickActions';
 
