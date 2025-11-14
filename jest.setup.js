@@ -93,6 +93,75 @@ jest.mock('@react-native-community/netinfo', () => ({
   addEventListener: jest.fn(() => jest.fn()),
 }));
 
+// Mock Supabase client
+const mockSupabaseClient = {
+  auth: {
+    signUp: jest.fn(),
+    signInWithPassword: jest.fn(),
+    signOut: jest.fn(),
+    getSession: jest.fn(() => Promise.resolve({ data: { session: null }, error: null })),
+    getUser: jest.fn(),
+    onAuthStateChange: jest.fn((callback) => {
+      // Call the callback immediately with INITIAL_SESSION
+      setTimeout(() => callback('INITIAL_SESSION', null), 0);
+      return {
+        data: { subscription: { unsubscribe: jest.fn() } },
+      };
+    }),
+    resetPasswordForEmail: jest.fn(),
+    updateUser: jest.fn(),
+  },
+  from: jest.fn((table) => ({
+    select: jest.fn().mockReturnThis(),
+    insert: jest.fn().mockReturnThis(),
+    update: jest.fn().mockReturnThis(),
+    delete: jest.fn().mockReturnThis(),
+    eq: jest.fn().mockReturnThis(),
+    neq: jest.fn().mockReturnThis(),
+    gt: jest.fn().mockReturnThis(),
+    lt: jest.fn().mockReturnThis(),
+    gte: jest.fn().mockReturnThis(),
+    lte: jest.fn().mockReturnThis(),
+    like: jest.fn().mockReturnThis(),
+    ilike: jest.fn().mockReturnThis(),
+    is: jest.fn().mockReturnThis(),
+    in: jest.fn().mockReturnThis(),
+    contains: jest.fn().mockReturnThis(),
+    containedBy: jest.fn().mockReturnThis(),
+    range: jest.fn().mockReturnThis(),
+    order: jest.fn().mockReturnThis(),
+    limit: jest.fn().mockReturnThis(),
+    single: jest.fn(),
+    maybeSingle: jest.fn(),
+    csv: jest.fn(),
+    upsert: jest.fn().mockReturnThis(),
+  })),
+  channel: jest.fn(() => ({
+    on: jest.fn().mockReturnThis(),
+    subscribe: jest.fn(),
+    unsubscribe: jest.fn(),
+  })),
+  removeChannel: jest.fn(),
+  rpc: jest.fn(),
+  storage: {
+    from: jest.fn(() => ({
+      upload: jest.fn(),
+      download: jest.fn(),
+      list: jest.fn(),
+      remove: jest.fn(),
+      getPublicUrl: jest.fn(),
+    })),
+  },
+};
+
+jest.mock('@/lib/supabase', () => ({
+  __esModule: true,
+  supabase: mockSupabaseClient,
+}));
+
+// Make mockSupabaseClient available globally for tests
+global.mockSupabaseClient = mockSupabaseClient;
+
 // Mock react-native-reanimated
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');

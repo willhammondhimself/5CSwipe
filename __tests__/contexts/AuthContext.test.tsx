@@ -2,6 +2,9 @@
  * Tests for AuthContext
  */
 
+// Mock supabase BEFORE any imports that use it
+jest.mock('@/lib/supabase');
+
 import React from 'react';
 import { renderHook, act, waitFor } from '@testing-library/react-native';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
@@ -31,6 +34,12 @@ describe('AuthContext', () => {
       expect(mockSupabaseClient.auth.signUp).toHaveBeenCalledWith({
         email: 'test@example.com',
         password: 'password123',
+        options: {
+          data: {
+            full_name: undefined,
+            school: 'HMC',
+          },
+        },
       });
     });
 
@@ -116,7 +125,12 @@ describe('AuthContext', () => {
         await result.current.resetPassword('test@example.com');
       });
 
-      expect(mockSupabaseClient.auth.resetPasswordForEmail).toHaveBeenCalledWith('test@example.com');
+      expect(mockSupabaseClient.auth.resetPasswordForEmail).toHaveBeenCalledWith(
+        'test@example.com',
+        expect.objectContaining({
+          redirectTo: expect.any(String),
+        })
+      );
     });
   });
 

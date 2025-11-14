@@ -1,13 +1,15 @@
 /**
  * Mock Supabase client for testing
+ * This is set up globally in jest.setup.js
  */
 
-export const mockSupabaseClient = {
+// Use the globally available mock client
+export const mockSupabaseClient = global.mockSupabaseClient || {
   auth: {
     signUp: jest.fn(),
     signInWithPassword: jest.fn(),
     signOut: jest.fn(),
-    getSession: jest.fn(),
+    getSession: jest.fn(() => Promise.resolve({ data: { session: null }, error: null })),
     getUser: jest.fn(),
     onAuthStateChange: jest.fn(() => ({
       data: { subscription: { unsubscribe: jest.fn() } },
@@ -59,11 +61,9 @@ export const mockSupabaseClient = {
 };
 
 /**
- * Mock the Supabase module
+ * The Supabase module is mocked in jest.setup.js
+ * No need to duplicate the mock here
  */
-jest.mock('@/lib/supabase', () => ({
-  supabase: mockSupabaseClient,
-}));
 
 /**
  * Helper to reset all Supabase mocks
