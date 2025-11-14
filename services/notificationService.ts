@@ -47,11 +47,13 @@ const DEFAULT_PREFERENCES: NotificationPreferences = {
 Notifications.setNotificationHandler({
   handleNotification: async (notification) => {
     const preferences = await NotificationService.getPreferences();
-    
+
     return {
       shouldShowAlert: preferences.enablePushNotifications,
       shouldPlaySound: preferences.enablePushNotifications && preferences.notificationSound !== 'subtle',
       shouldSetBadge: true,
+      shouldShowBanner: preferences.enablePushNotifications,
+      shouldShowList: preferences.enablePushNotifications,
     };
   },
 });
@@ -141,9 +143,9 @@ export class NotificationService {
   // Get push notification token
   private async getPushToken(): Promise<string | null> {
     try {
-      // Check if running on physical device
-      if (!Notifications.isDevice) {
-        console.warn('Push notifications only work on physical devices');
+      // Check if running on a platform that supports push notifications
+      if (Platform.OS === 'web') {
+        console.warn('Push notifications not supported on web');
         return null;
       }
 
@@ -253,7 +255,11 @@ export class NotificationService {
       }
 
       // Cancel scheduled notifications
-      await Notifications.cancelScheduledNotificationAsync(...subscription.notificationIds);
+      await Promise.all(
+        subscription.notificationIds.map(id =>
+          Notifications.cancelScheduledNotificationAsync(id)
+        )
+      );
 
       // Mark subscription as inactive
       subscription.isActive = false;
@@ -289,6 +295,7 @@ export class NotificationService {
               data: { courseId: course.id, type: 'spot_check' },
             },
             trigger: {
+              type: 'timeInterval' as const,
               seconds: 3600, // Check in 1 hour
               repeats: true,
             },
@@ -306,6 +313,7 @@ export class NotificationService {
               data: { courseId: course.id, type: 'enrollment_reminder' },
             },
             trigger: {
+              type: 'timeInterval' as const,
               seconds: 24 * 60 * 60, // 24 hours
             },
           });
@@ -319,6 +327,7 @@ export class NotificationService {
               data: { courseId: course.id, type: 'enrollment_urgent' },
             },
             trigger: {
+              type: 'timeInterval' as const,
               seconds: 3 * 60 * 60, // 3 hours
             },
           });
@@ -335,6 +344,7 @@ export class NotificationService {
               data: { courseId: course.id, type: 'waitlist_check' },
             },
             trigger: {
+              type: 'timeInterval' as const,
               seconds: 2 * 60 * 60, // Check every 2 hours
               repeats: true,
             },
@@ -352,6 +362,7 @@ export class NotificationService {
               data: { courseId: course.id, type: 'course_added' },
             },
             trigger: {
+              type: 'timeInterval' as const,
               seconds: 5, // 5 seconds delay
             },
           });
@@ -489,6 +500,7 @@ export class NotificationService {
         data: { courseId: course.id, type: 'test' },
       },
       trigger: {
+        type: 'timeInterval' as const,
         seconds: 1,
       },
     });

@@ -59,6 +59,16 @@ export default function PublicScheduleView() {
   const [schedule, setSchedule] = useState<SchedulePlan | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Helper to get school color safely
+  const getSchoolColor = (school: string): string => {
+    const validSchools = ['HMC', 'Pomona', 'CMC', 'Scripps', 'Pitzer', '5C'] as const;
+    type School = typeof validSchools[number];
+    if (validSchools.includes(school as School)) {
+      return SwipeColors.schools[school as School];
+    }
+    return SwipeColors.schools['5C']; // Default to 5C color
+  };
+
   useEffect(() => {
     if (token) {
       loadSchedule();
@@ -69,6 +79,12 @@ export default function PublicScheduleView() {
     try {
       setLoading(true);
       setError(null);
+
+      if (!supabase) {
+        setError('Database connection not available');
+        setLoading(false);
+        return;
+      }
 
       // Fetch schedule by share token
       const { data: planData, error: planError } = await supabase
@@ -126,25 +142,38 @@ export default function PublicScheduleView() {
         color: planData.color,
         createdAt: planData.created_at,
         user: {
-          school: planData.user_profiles.school,
-          graduationYear: planData.user_profiles.graduation_year,
+          school: (planData.user_profiles as any)?.school || (Array.isArray(planData.user_profiles) && planData.user_profiles[0]?.school) || 'Unknown',
+          graduationYear: (planData.user_profiles as any)?.graduation_year || (Array.isArray(planData.user_profiles) && planData.user_profiles[0]?.graduation_year) || new Date().getFullYear(),
         },
         courses: (coursesData || []).map((course: any) => ({
           id: course.id,
-          courseCode: course.course_code,
-          title: course.title,
-          description: course.description,
-          professor: course.professor,
-          school: course.school,
-          credits: course.credits,
-          meetingTime: course.meeting_time,
-          location: course.location,
-          semester: course.semester,
-          department: course.department,
-          spots: course.spots,
-          enrolled: course.enrolled,
-          waitlist: course.waitlist,
-          courseStatus: course.course_status,
+          courseCode: course.course_code || '',
+          title: course.title || '',
+          description: course.description || '',
+          professor: course.professor || '',
+          school: course.school || '5C',
+          credits: course.credits || 0,
+          meetingTime: course.meeting_time || '',
+          location: course.location || '',
+          semester: (course.semester || 'Spring 2025') as 'Fall 2024' | 'Spring 2025' | 'Summer 2025' | 'Fall 2025',
+          department: course.department || '',
+          enrollmentCap: course.enrollment_cap || course.spots || 0,
+          enrollmentCurrent: course.enrollment_current || course.enrolled || 0,
+          waitlistCap: course.waitlist_cap || course.waitlist || 0,
+          waitlistCurrent: course.waitlist_current || 0,
+          meetingDays: course.meeting_days || [],
+          startTime: course.start_time || '09:00',
+          endTime: course.end_time || '10:00',
+          buildingCode: course.building_code,
+          roomNumber: course.room_number,
+          instructionMethod: (course.instruction_method || 'In-Person') as 'In-Person' | 'Online' | 'Hybrid',
+          gradeType: (course.grade_type || 'Letter') as 'Letter' | 'Pass/Fail' | 'Both',
+          lastUpdated: course.last_updated || new Date().toISOString(),
+          courseLevel: (course.course_level || 'Intermediate') as 'Introductory' | 'Intermediate' | 'Advanced' | 'Graduate',
+          distributionReqs: course.distribution_reqs,
+          prerequisites: course.prerequisites,
+          crossListings: course.cross_listings,
+          majorRequirements: course.major_requirements,
         })),
       };
 
@@ -200,7 +229,7 @@ export default function PublicScheduleView() {
         <View style={styles.headerContent}>
           <View style={styles.headerTop}>
             <Text style={styles.headerTitle}>{schedule.name}</Text>
-            <View style={[styles.schoolBadge, { backgroundColor: SwipeColors.schools[schedule.user.school] }]}>
+            <View style={[styles.schoolBadge, { backgroundColor: getSchoolColor(schedule.user.school) }]}>
               <Text style={styles.schoolText}>{schedule.user.school}</Text>
             </View>
           </View>
@@ -251,7 +280,7 @@ export default function PublicScheduleView() {
               colors={[SwipeColors.cardGradientStart, SwipeColors.cardGradientEnd]}
               style={[styles.courseCard, index > 0 && styles.courseCardSpacing]}
             >
-              <View style={[styles.courseBadge, { backgroundColor: SwipeColors.schools[course.school] }]}>
+              <View style={[styles.courseBadge, { backgroundColor: getSchoolColor(course.school) }]}>
                 <Text style={styles.courseBadgeText}>{course.school}</Text>
               </View>
 

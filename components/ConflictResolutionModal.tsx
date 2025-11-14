@@ -154,10 +154,10 @@ export default function ConflictResolutionModal({
       </View>
 
       {/* Availability */}
-      {alternative.spots && alternative.enrolled !== undefined && (
+      {alternative.enrollmentCap && alternative.enrollmentCurrent !== undefined && (
         <View style={styles.availabilityRow}>
           <Text style={styles.availabilityText}>
-            {alternative.spots - alternative.enrolled} spots left
+            {alternative.enrollmentCap - alternative.enrollmentCurrent} spots left
           </Text>
         </View>
       )}

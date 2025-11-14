@@ -63,8 +63,13 @@ export const SwipeColors = {
   // New modern colors
   accentBlue: '#007AFF',
   accentPurple: '#5856D6',
+  accentYellow: '#FFD700',   // Gold/yellow accent
   shadowColor: 'rgba(0, 0, 0, 0.5)',
   highlightBorder: 'rgba(255, 255, 255, 0.1)',
+
+  // Color aliases
+  likeColor: '#4FC3F7',      // Alias for like color
+  surface: '#2C2C2E',        // Surface background (same as card)
 
   // Semantic color aliases for auth screens and components
   primary: '#007AFF',        // Brand accent color (iOS blue)

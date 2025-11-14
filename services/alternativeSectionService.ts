@@ -83,8 +83,8 @@ class AlternativeSectionService {
         }
 
         // More available spots is better
-        const aSpots = a.spots && a.enrolled !== undefined ? a.spots - a.enrolled : 0;
-        const bSpots = b.spots && b.enrolled !== undefined ? b.spots - b.enrolled : 0;
+        const aSpots = a.enrollmentCap && a.enrollmentCurrent !== undefined ? a.enrollmentCap - a.enrollmentCurrent : 0;
+        const bSpots = b.enrollmentCap && b.enrollmentCurrent !== undefined ? b.enrollmentCap - b.enrollmentCurrent : 0;
         return bSpots - aSpots;
       })
       .slice(0, maxResults);
@@ -161,10 +161,10 @@ class AlternativeSectionService {
    * Check if a course is full
    */
   private isFull(course: Course): boolean {
-    if (!course.spots || course.enrolled === undefined) {
+    if (!course.enrollmentCap || course.enrollmentCurrent === undefined) {
       return false;
     }
-    return course.enrolled >= course.spots;
+    return course.enrollmentCurrent >= course.enrollmentCap;
   }
 
   /**
@@ -248,8 +248,8 @@ class AlternativeSectionService {
     score += dayOverlap * 5; // Up to 25 points (5 days)
 
     // More available spots is better
-    if (course.spots && course.enrolled !== undefined) {
-      const available = course.spots - course.enrolled;
+    if (course.enrollmentCap && course.enrollmentCurrent !== undefined) {
+      const available = course.enrollmentCap - course.enrollmentCurrent;
       score += Math.min(available, 10); // Up to 10 points
     }
 

@@ -279,6 +279,8 @@ export function subscribeLikedCourses(
 
   // Return unsubscribe function
   return () => {
-    supabase.removeChannel(channel);
+    if (supabase) {
+      supabase.removeChannel(channel);
+    }
   };
 }
