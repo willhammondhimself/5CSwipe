@@ -28,7 +28,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { SwipeColors } from '@/contexts/constants/Colors';
-import { AcademicTracker } from '@/utils/academicTracker';
+import { AcademicTracker, RequirementAnalysis } from '@/utils/academicTracker';
 import { AcademicProfile } from '@/data/academicData';
 import { Course } from '@/data/mockCourses';
 

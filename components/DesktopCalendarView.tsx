@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, TextInput, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Course } from '@/data/mockCourses';
@@ -38,6 +38,10 @@ export default function DesktopCalendarView() {
   const [scheduledCourses, setScheduledCourses] = useState<ScheduledCourse[]>([]);
   const [draggedCourse, setDraggedCourse] = useState<Course | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const calendarRef = useRef<View>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [calendarLayout, setCalendarLayout] = useState({ x: 0, y: 0, width: 0, height: 0 });
 
   // Load scheduled courses from active plan on mount
   useEffect(() => {

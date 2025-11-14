@@ -62,6 +62,10 @@ export default function CourseBrowserModal({
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [filterMode, setFilterMode] = useState<FilterMode>('fits-time');
   const [showFilters, setShowFilters] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedSchools, setSelectedSchools] = useState<string[]>(['HMC', 'Pomona', 'CMC', 'Scripps', 'Pitzer', '5C']);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [showFullCourses, setShowFullCourses] = useState(false);
 
   // Conflict resolution state
   const [showConflictResolver, setShowConflictResolver] = useState(false);
@@ -154,7 +158,7 @@ export default function CourseBrowserModal({
       const bSpace = b.enrollmentCap - b.enrollmentCurrent;
       return bSpace - aSpace;
     });
-  }, [availableCourses, searchQuery, filterMode, selectedDay, selectedTime]);
+  }, [availableCourses, searchQuery, filterMode, selectedDay, selectedTime, selectedSchools, showFullCourses]);
 
   const detectConflicts = (course: Course) => {
     if (!activePlan) return [];

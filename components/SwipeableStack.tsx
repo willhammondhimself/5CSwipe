@@ -54,6 +54,8 @@ export default function SwipeableStack({
   const insets = useSafeAreaInsets();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [recommendations, setRecommendations] = useState<RecommendationScore[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [recommendedCourses, setRecommendedCourses] = useState<Course[]>([]);
   const [showPermModal, setShowPermModal] = useState(false);
   const [permCourseCode, setPermCourseCode] = useState('');
   const [showDetailModal, setShowDetailModal] = useState(false);

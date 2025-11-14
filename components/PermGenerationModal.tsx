@@ -8,6 +8,7 @@ import {
   ScrollView,
   ActivityIndicator,
   Alert,
+  Dimensions,
 } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -15,6 +16,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { Course } from '@/data/mockCourses';
 import { usePremium } from '@/contexts/PremiumContext';
+
+const { height: screenHeight } = Dimensions.get('window');
 
 interface PermGenerationModalProps {
   visible: boolean;
