@@ -34,7 +34,7 @@ import ShareScheduleModal from '@/components/ShareScheduleModal';
 export default function ScheduleScreen() {
   const { likedCourses, addLikedCourse } = useLikedCourses();
   const { creditSystem } = useCreditSystem();
-  const { activePlan, isLoading, updatePlanCourses, loadPlans } = useScheduleVariants();
+  const { activePlan, isLoading, updatePlanCourses } = useScheduleVariants();
   const [showPlanManager, setShowPlanManager] = useState(false);
   const [showProgressDashboard, setShowProgressDashboard] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -89,10 +89,7 @@ export default function ScheduleScreen() {
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
-      await Promise.all([
-        refreshCourses(),
-        loadPlans(),
-      ]);
+      await refreshCourses();
     } finally {
       setRefreshing(false);
     }

@@ -202,6 +202,7 @@ export async function updateSchedulePlan(
     semester?: string;
     color?: string;
     isPublic?: boolean;
+    shareToken?: string;
   }
 ): Promise<{ error: Error | null }> {
   if (!supabase) {
@@ -217,6 +218,7 @@ export async function updateSchedulePlan(
     if (updates.color !== undefined) updateData.color = updates.color;
     if (updates.isActive !== undefined) updateData.is_active = updates.isActive;
     if (updates.isPublic !== undefined) updateData.is_public = updates.isPublic;
+    if (updates.shareToken !== undefined) updateData.share_token = updates.shareToken;
 
     if (updates.courseIds !== undefined) {
       updateData.course_ids = updates.courseIds;

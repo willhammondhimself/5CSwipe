@@ -95,8 +95,8 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    if (result.processed > 0) {
-      console.log(`✅ Processed ${result.processed} queued mutations`);
+    if (result.success > 0) {
+      console.log(`✅ Processed ${result.success} queued mutations`);
       await loadFromSupabase(); // Reload fresh data after sync
     }
 
@@ -120,8 +120,9 @@ export function LikedCoursesProvider({ children }: { children: ReactNode }) {
         // Fall back to cache
         const cached = await offlineStorageService.getCachedLikedCourses(user.id);
         if (cached) {
-          setLikedCourses(cached.filter(c => !c.isSuperLike));
-          setSuperLikedCourses(cached.filter(c => c.isSuperLike));
+          // Cache doesn't distinguish between liked and super-liked, so load all as liked
+          setLikedCourses(cached);
+          setSuperLikedCourses([]);
         } else {
           await loadFromAsyncStorage();
         }

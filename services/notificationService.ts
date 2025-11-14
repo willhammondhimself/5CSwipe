@@ -295,10 +295,9 @@ export class NotificationService {
               data: { courseId: course.id, type: 'spot_check' },
             },
             trigger: {
-              type: 'timeInterval' as const,
               seconds: 3600, // Check in 1 hour
               repeats: true,
-            },
+            } as Notifications.NotificationTriggerInput,
           });
           notificationIds.push(spotCheckId);
           break;
@@ -313,9 +312,8 @@ export class NotificationService {
               data: { courseId: course.id, type: 'enrollment_reminder' },
             },
             trigger: {
-              type: 'timeInterval' as const,
               seconds: 24 * 60 * 60, // 24 hours
-            },
+            } as Notifications.NotificationTriggerInput,
           });
           notificationIds.push(oneDayId);
 
@@ -327,9 +325,8 @@ export class NotificationService {
               data: { courseId: course.id, type: 'enrollment_urgent' },
             },
             trigger: {
-              type: 'timeInterval' as const,
               seconds: 3 * 60 * 60, // 3 hours
-            },
+            } as Notifications.NotificationTriggerInput,
           });
           notificationIds.push(threeHoursId);
           break;
@@ -344,10 +341,9 @@ export class NotificationService {
               data: { courseId: course.id, type: 'waitlist_check' },
             },
             trigger: {
-              type: 'timeInterval' as const,
               seconds: 2 * 60 * 60, // Check every 2 hours
               repeats: true,
-            },
+            } as Notifications.NotificationTriggerInput,
           });
           notificationIds.push(waitlistId);
           break;
@@ -362,9 +358,8 @@ export class NotificationService {
               data: { courseId: course.id, type: 'course_added' },
             },
             trigger: {
-              type: 'timeInterval' as const,
               seconds: 5, // 5 seconds delay
-            },
+            } as Notifications.NotificationTriggerInput,
           });
           notificationIds.push(addedId);
           break;
@@ -500,9 +495,8 @@ export class NotificationService {
         data: { courseId: course.id, type: 'test' },
       },
       trigger: {
-        type: 'timeInterval' as const,
         seconds: 1,
-      },
+      } as Notifications.NotificationTriggerInput,
     });
   }
 

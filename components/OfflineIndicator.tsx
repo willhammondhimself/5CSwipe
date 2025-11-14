@@ -24,11 +24,13 @@ import { SwipeColors } from '@/contexts/constants/Colors';
 import { syncQueueService } from '@/services/syncQueueService';
 
 interface OfflineIndicatorProps {
-  isOffline: boolean;
+  isOffline?: boolean; // Optional - will use NetInfo if not provided
   onDismiss?: () => void;
 }
 
-export default function OfflineIndicator({ isOffline, onDismiss }: OfflineIndicatorProps) {
+export default function OfflineIndicator({ isOffline: isOfflineProp, onDismiss }: OfflineIndicatorProps) {
+  // Use prop if provided, otherwise detect network state
+  const [isOffline, setIsOffline] = useState(isOfflineProp ?? false);
   const [queueCount, setQueueCount] = useState(0);
   const [visible, setVisible] = useState(false);
   const [opacity] = useState(new Animated.Value(0));
