@@ -4,7 +4,7 @@
  */
 
 // Use the globally available mock client
-export const mockSupabaseClient = global.mockSupabaseClient || {
+export const mockSupabaseClient = (global as any).mockSupabaseClient || {
   auth: {
     signUp: jest.fn(),
     signInWithPassword: jest.fn(),
