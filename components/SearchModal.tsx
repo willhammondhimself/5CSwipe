@@ -8,14 +8,11 @@ import {
   StyleSheet,
   FlatList,
   StatusBar,
-  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { Course } from '@/data/mockCourses';
 import { SwipeColors } from '@/contexts/constants/Colors';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 interface SearchModalProps {
   visible: boolean;

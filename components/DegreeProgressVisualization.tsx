@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -23,8 +22,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { DegreeRequirement, AcademicProfile } from '@/data/academicData';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 interface DegreeProgressVisualizationProps {
   profile: AcademicProfile;
@@ -72,7 +69,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ requirement, index, onPress }
       index * 100,
       withSpring(1, { damping: 20, stiffness: 300 })
     );
-  }, [progress, index]);
+  }, [progress, index, progressValue, scaleValue]);
 
   const animatedProgressStyle = useAnimatedStyle(() => ({
     width: `${progressValue.value * 100}%`,

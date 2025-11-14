@@ -62,7 +62,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
         }
       }
     }
-  }, [user, profile, loading, segments]);
+  }, [user, profile, loading, segments, router]);
 
   // Show loading spinner while checking auth
   if (loading) {

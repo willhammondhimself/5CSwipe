@@ -73,6 +73,7 @@ export default function PublicScheduleView() {
     if (token) {
       loadSchedule();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   async function loadSchedule() {

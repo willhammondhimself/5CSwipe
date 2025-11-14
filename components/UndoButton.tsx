@@ -1,17 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import {
-  View,
   Text,
   TouchableOpacity,
   StyleSheet,
   Animated,
-  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { SwipeColors } from '@/contexts/constants/Colors';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 interface UndoButtonProps {
   visible: boolean;
@@ -48,7 +43,8 @@ export default function UndoButton({ visible, onUndo, courseCode }: UndoButtonPr
     } else {
       hideButton();
     }
-  }, [visible]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, opacityAnim, slideAnim]);
 
   const hideButton = () => {
     Animated.parallel([

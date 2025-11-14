@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -6,10 +6,8 @@ import {
   TouchableOpacity,
   Modal,
   ScrollView,
-  Dimensions,
   StatusBar,
 } from 'react-native';
-import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
   XMarkIcon,
@@ -26,8 +24,6 @@ import { SwipeColors } from '@/contexts/constants/Colors';
 import { DegreeRequirement } from '@/data/academicData';
 import { Course, mockCourses } from '@/data/mockCourses';
 import { useLikedCourses } from '@/contexts/LikedCoursesContext';
-
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 interface RequirementDetailsModalProps {
   visible: boolean;

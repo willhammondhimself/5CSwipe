@@ -71,7 +71,7 @@ export default function LiquidButton({
       -1,
       true
     );
-  }, []);
+  }, [breathe]);
 
   const handlePress = () => {
     if (disabled) return;

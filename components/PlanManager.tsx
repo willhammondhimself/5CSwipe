@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -16,7 +16,6 @@ import {
   TrashIcon,
   DocumentDuplicateIcon,
   ChartBarIcon,
-  ExclamationTriangleIcon,
   CheckCircleIcon,
   XMarkIcon,
   ArrowRightIcon,
@@ -42,8 +41,6 @@ export default function PlanManager({
 }: PlanManagerProps) {
   const {
     plans,
-    activePlan,
-    isLoading,
     createPlan,
     duplicatePlan,
     deletePlan,

@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
@@ -22,8 +21,6 @@ import {
 import { Course } from '@/data/mockCourses';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { useScheduleVariants } from '@/contexts/ScheduleVariantsContext';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 interface DegreeRequirement {
   id: string;

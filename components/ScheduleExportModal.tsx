@@ -18,10 +18,10 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withTiming,
-  runOnJS,
 } from 'react-native-reanimated';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { Course } from '@/data/mockCourses';
+// eslint-disable-next-line import/no-named-as-default
 import CalendarExportService from '@/utils/calendarExport';
 import { PDFExportService } from '@/utils/pdfExport';
 
@@ -61,7 +61,7 @@ export default function ScheduleExportModal({
       opacity.value = withTiming(0, { duration: 200 });
       scale.value = withTiming(0.9, { duration: 200 });
     }
-  }, [isVisible]);
+  }, [isVisible, opacity, scale]);
 
   const handleICSExport = async () => {
     if (courses.length === 0) {
@@ -120,7 +120,7 @@ export default function ScheduleExportModal({
 
     setIsExporting(true);
     try {
-      const calendarUrl = await CalendarExportService.generateCalendarUrl(courses, semester);
+      await CalendarExportService.generateCalendarUrl(courses, semester);
       const supported = await Linking.canOpenURL('calshow://');
       
       if (supported) {

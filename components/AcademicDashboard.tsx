@@ -28,7 +28,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { SwipeColors } from '@/contexts/constants/Colors';
-import { AcademicTracker, RequirementAnalysis, GraduationAnalysis } from '@/utils/academicTracker';
+import { AcademicTracker } from '@/utils/academicTracker';
 import { AcademicProfile } from '@/data/academicData';
 import { Course } from '@/data/mockCourses';
 
@@ -63,7 +63,7 @@ export default function AcademicDashboard({
       opacity.value = withTiming(0, { duration: 200 });
       scale.value = withTiming(0.9, { duration: 200 });
     }
-  }, [isVisible]);
+  }, [isVisible, opacity, scale]);
 
   // Initialize academic tracker
   const academicTracker = useMemo(() => {

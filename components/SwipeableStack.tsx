@@ -4,13 +4,11 @@ import {
   Text,
   StyleSheet,
   Dimensions,
-  TouchableOpacity,
   PanResponder,
   Animated,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Clipboard from 'expo-clipboard';
-import { Ionicons } from '@expo/vector-icons';
 
 import SwipeableCard from './SwipeableCard';
 import PermModal from './PermModal';
@@ -55,7 +53,6 @@ export default function SwipeableStack({
   const { likedCourses } = useLikedCourses();
   const insets = useSafeAreaInsets();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [recommendedCourses, setRecommendedCourses] = useState<Course[]>([]);
   const [recommendations, setRecommendations] = useState<RecommendationScore[]>([]);
   const [showPermModal, setShowPermModal] = useState(false);
   const [permCourseCode, setPermCourseCode] = useState('');
@@ -337,7 +334,7 @@ export default function SwipeableStack({
           }
         },
       }),
-    [currentCourse, currentIndex, position, likeOpacity, nopeOpacity, superLikeOpacity, handleSwipeComplete]
+    [position, likeOpacity, nopeOpacity, superLikeOpacity, handleSwipeComplete]
   );
 
   const handleButtonPress = (action: 'left' | 'right' | 'up') => {

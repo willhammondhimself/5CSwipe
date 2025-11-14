@@ -18,7 +18,6 @@ import {
   ClockIcon,
   CalendarDaysIcon,
   PlusIcon,
-  ExclamationTriangleIcon,
   CheckCircleIcon,
   AdjustmentsHorizontalIcon,
   ListBulletIcon,
@@ -31,7 +30,7 @@ import { useScheduleVariants } from '@/contexts/ScheduleVariantsContext';
 import ConflictResolver from './ConflictResolver';
 import PrerequisiteChainVisualization from './PrerequisiteChainVisualization';
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 interface CourseBrowserModalProps {
   visible: boolean;
@@ -63,8 +62,6 @@ export default function CourseBrowserModal({
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [filterMode, setFilterMode] = useState<FilterMode>('fits-time');
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedSchools, setSelectedSchools] = useState<string[]>(['CMC', 'HMC', 'Pitzer', 'Pomona', 'Scripps']);
-  const [showFullCourses, setShowFullCourses] = useState(false);
 
   // Conflict resolution state
   const [showConflictResolver, setShowConflictResolver] = useState(false);
@@ -157,7 +154,7 @@ export default function CourseBrowserModal({
       const bSpace = b.enrollmentCap - b.enrollmentCurrent;
       return bSpace - aSpace;
     });
-  }, [availableCourses, searchQuery, filterMode, selectedSchools, showFullCourses, selectedDay, selectedTime]);
+  }, [availableCourses, searchQuery, filterMode, selectedDay, selectedTime]);
 
   const detectConflicts = (course: Course) => {
     if (!activePlan) return [];

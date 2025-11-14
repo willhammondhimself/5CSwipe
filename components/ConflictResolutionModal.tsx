@@ -19,7 +19,6 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
-  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
@@ -34,9 +33,7 @@ import {
 } from 'react-native-heroicons/outline';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { Course } from '@/data/mockCourses';
-import { parseMeetingTime, type Weekday } from '@/utils/hyperschedule';
-
-const { width: screenWidth } = Dimensions.get('window');
+import { type Weekday } from '@/utils/hyperschedule';
 
 export interface ConflictInfo {
   course1: Course;
@@ -66,12 +63,10 @@ export default function ConflictResolutionModal({
   onSwapCourse,
   onViewAlternatives,
 }: ConflictResolutionModalProps) {
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [showingAlternativesFor, setShowingAlternativesFor] = useState<Course | null>(null);
 
   useEffect(() => {
     if (!visible) {
-      setSelectedCourse(null);
       setShowingAlternativesFor(null);
     }
   }, [visible]);

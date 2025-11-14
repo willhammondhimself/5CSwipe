@@ -223,7 +223,7 @@ export class CourseService {
         throw new Error(data.error || 'Python API returned error');
       }
 
-      return data.courses.map(course => this.convertPythonToAppFormat(course));
+      return data.courses.map((course: any) => this.convertPythonToAppFormat(course));
     } catch (error) {
       console.error('Python API failed:', error);
       return [];
@@ -420,9 +420,10 @@ export class CourseService {
     // Determine course level from course code (e.g., CSCI005 -> Introductory)
     const courseNumberMatch = pythonCourse.course_code?.match(/(\d{3})/);
     const courseNumber = courseNumberMatch ? parseInt(courseNumberMatch[1]) : 0;
-    const courseLevel = courseNumber < 100 ? 'Introductory' :
-                       courseNumber < 300 ? 'Intermediate' :
-                       courseNumber < 500 ? 'Advanced' : 'Graduate';
+    const courseLevel: "Introductory" | "Intermediate" | "Advanced" | "Graduate" =
+      courseNumber < 100 ? 'Introductory' :
+      courseNumber < 300 ? 'Intermediate' :
+      courseNumber < 500 ? 'Advanced' : 'Graduate';
 
     const convertedCourse = {
       id: pythonCourse.course_code || `${Date.now()}-${Math.random()}`,
@@ -437,7 +438,7 @@ export class CourseService {
       description: pythonCourse.notes || pythonCourse.title || '',
       enrollmentCap: cap,
       enrollmentCurrent: cap - available,
-      semester: 'FA 2025',
+      semester: 'Fall 2025' as const,
       prerequisites: '',
       // Enhanced required fields
       meetingDays,
@@ -445,8 +446,8 @@ export class CourseService {
       endTime: pythonCourse.end_time || '',
       buildingCode: pythonCourse.building || '',
       roomNumber: pythonCourse.room || '',
-      instructionMethod: 'In-Person', // Default for in-person courses
-      gradeType: 'Letter', // Default grade type
+      instructionMethod: 'In-Person' as const, // Default for in-person courses
+      gradeType: 'Letter' as const, // Default grade type
       lastUpdated: new Date().toISOString(),
       courseLevel,
     };

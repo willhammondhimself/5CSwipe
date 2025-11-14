@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Modal,
   View,
@@ -29,13 +29,6 @@ export default function CreditRangePicker({
   creditRange,
   onSelectRange,
 }: CreditRangePickerProps) {
-  const handleSelect = (range: [number, number]) => {
-    onSelectRange(range);
-    onClose();
-  };
-
-
-
   return (
     <Modal
       visible={visible}

@@ -27,7 +27,7 @@ import { supabase } from '../../lib/supabase';
 
 export default function EmailVerificationScreen() {
   const router = useRouter();
-  const { user, session, refreshProfile } = useAuth();
+  const { user, refreshProfile } = useAuth();
 
   const [loading, setLoading] = useState(false);
   const [checkingStatus, setCheckingStatus] = useState(false);

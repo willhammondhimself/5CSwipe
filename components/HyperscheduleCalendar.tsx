@@ -46,7 +46,6 @@ const DAY_LABELS = {
 
 const TIME_COLUMN_WIDTH = 60;
 const HOUR_HEIGHT = 80; // Height per hour in pixels
-const SLOT_HEIGHT = (HOUR_HEIGHT * SLOT_SIZE) / 3600; // Height per 5-min slot
 
 export default function HyperscheduleCalendar({
   courses,

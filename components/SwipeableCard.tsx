@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { 
@@ -21,7 +21,7 @@ import { findScheduleConflicts } from '@/utils/scheduleUtils';
 import { useCreditSystem } from '@/contexts/CreditSystemContext';
 import { usePrerequisiteValidation } from '@/hooks/usePrerequisiteValidation';
 import { useNotifications } from '@/hooks/useNotifications';
-import { useCardPreferences, type CardViewMode } from '@/contexts/CardPreferencesContext';
+import { useCardPreferences } from '@/contexts/CardPreferencesContext';
 import CourseQuickActions from './CourseQuickActions';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');

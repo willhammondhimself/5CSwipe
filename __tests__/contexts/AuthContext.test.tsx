@@ -25,7 +25,7 @@ describe('AuthContext', () => {
       const { result } = renderHook(() => useAuth(), { wrapper });
 
       await act(async () => {
-        await result.current.signUp('test@example.com', 'password123');
+        await result.current.signUp('test@example.com', 'password123', 'HMC');
       });
 
       expect(mockSupabaseClient.auth.signUp).toHaveBeenCalledWith({
@@ -42,7 +42,7 @@ describe('AuthContext', () => {
 
       await act(async () => {
         try {
-          await result.current.signUp('test@example.com', 'weak');
+          await result.current.signUp('test@example.com', 'weak', 'HMC');
         } catch (error) {
           // Expected to throw
         }

@@ -30,7 +30,7 @@ interface OfflineIndicatorProps {
 
 export default function OfflineIndicator({ isOffline: isOfflineProp, onDismiss }: OfflineIndicatorProps) {
   // Use prop if provided, otherwise detect network state
-  const [isOffline, setIsOffline] = useState(isOfflineProp ?? false);
+  const [isOffline] = useState(isOfflineProp ?? false);
   const [queueCount, setQueueCount] = useState(0);
   const [visible, setVisible] = useState(false);
   const [opacity] = useState(new Animated.Value(0));
@@ -59,7 +59,8 @@ export default function OfflineIndicator({ isOffline: isOfflineProp, onDismiss }
     } else {
       handleDismiss();
     }
-  }, [isOffline]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOffline, opacity]);
 
   const loadQueueCount = async () => {
     const count = await syncQueueService.getQueueCount();

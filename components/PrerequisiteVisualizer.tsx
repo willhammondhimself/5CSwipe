@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AcademicCapIcon, ArrowRightIcon, ExclamationTriangleIcon } from 'react-native-heroicons/outline';

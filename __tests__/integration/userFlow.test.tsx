@@ -279,7 +279,7 @@ describe('User Flow Integration Tests', () => {
       mockSupabaseClient.channel.mockReturnValueOnce(mockChannel as any);
 
       // Verify channel setup
-      const channel = mockSupabaseClient.channel('user_liked_courses_changes');
+      const channel = mockSupabaseClient.channel();
       expect(channel.on).toBeDefined();
       expect(channel.subscribe).toBeDefined();
     });
@@ -293,7 +293,7 @@ describe('User Flow Integration Tests', () => {
 
       mockSupabaseClient.channel.mockReturnValueOnce(mockChannel as any);
 
-      const channel = mockSupabaseClient.channel('schedule_plans_changes');
+      const channel = mockSupabaseClient.channel();
       expect(channel.on).toBeDefined();
     });
 
@@ -305,8 +305,8 @@ describe('User Flow Integration Tests', () => {
       });
 
       // Device 2 should receive the update via real-time subscription
-      const mockChannel = {
-        on: jest.fn((event, config, callback) => {
+      const mockChannel: any = {
+        on: jest.fn((event: string, config: any, callback: (payload: any) => void): any => {
           // Simulate receiving the update
           callback({
             eventType: 'UPDATE',
@@ -334,7 +334,7 @@ describe('User Flow Integration Tests', () => {
 
       expect(schedulePlan.is_public).toBe(true);
       expect(schedulePlan.share_token).toBeDefined();
-      expect(schedulePlan.share_token?.length).toBeGreaterThan(0);
+      expect(String(schedulePlan.share_token).length).toBeGreaterThan(0);
     });
 
     it('should retrieve public schedule by token', async () => {

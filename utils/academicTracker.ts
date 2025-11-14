@@ -306,9 +306,11 @@ export class AcademicTracker {
 
         // Remove planned courses from available pool
         semesterCourses.forEach(course => {
-          const reqIndex = unfulfilledRequirements.findIndex(req => 
-            this.coursesSatisfiesRequirement(course, { ...req, requiredCredits: req.remainingCredits })
-          );
+          const reqIndex = unfulfilledRequirements.findIndex(req => {
+            // Find the original requirement from profile
+            const originalReq = this.profile.requirements.find(r => r.id === req.requirementId);
+            return originalReq ? this.coursesSatisfiesRequirement(course, originalReq) : false;
+          });
           if (reqIndex >= 0) {
             unfulfilledRequirements[reqIndex].remainingCredits -= course.credits;
           }

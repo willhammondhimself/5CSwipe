@@ -30,7 +30,7 @@ import { SwipeColors } from '@/contexts/constants/Colors';
 
 export default function LoginScreen() {
   const router = useRouter();
-  const { signIn, resetPassword, profile } = useAuth();
+  const { signIn, resetPassword } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

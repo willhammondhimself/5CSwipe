@@ -17,7 +17,6 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withTiming,
-  runOnJS,
 } from 'react-native-reanimated';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { useFilters, CourseLevel, InstructionMethod } from '@/contexts/FilterContext';
@@ -60,7 +59,7 @@ export default function AdvancedFilters({
       opacity.value = withTiming(0, { duration: 200 });
       scale.value = withTiming(0.9, { duration: 200 });
     }
-  }, [isVisible]);
+  }, [isVisible, opacity, scale]);
 
   const animatedModalStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,

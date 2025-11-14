@@ -51,9 +51,9 @@ export default function ProfileScreen() {
   const { user, profile: authProfile, signOut } = useAuth();
   const { likedCourses, superLikedCourses } = useLikedCourses();
   const { filters, updateSchoolFilter, updateShowFullCourses, updateTimeSlot, updateCreditRange } = useFilters();
-  const { creditSystem, setCreditSystem, getCreditsLabel } = useCreditSystem();
-  const { isPremium, setPremiumStatus, permRequestsUsed, maxPermRequests } = usePremium();
-  const { profile, updateMajor, updateCredits, updateGPA } = useAcademicProfile();
+  const { creditSystem, setCreditSystem } = useCreditSystem();
+  const { isPremium, setPremiumStatus } = usePremium();
+  const { profile, updateMajor } = useAcademicProfile();
   const [showTimeSlotPicker, setShowTimeSlotPicker] = useState(false);
   const [showCreditRangePicker, setShowCreditRangePicker] = useState(false);
   const [showMajorModal, setShowMajorModal] = useState(false);

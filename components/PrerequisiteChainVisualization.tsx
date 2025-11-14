@@ -6,11 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  AcademicCapIcon,
   ArrowRightIcon,
   CheckCircleIcon,
   ClockIcon,
@@ -23,8 +21,6 @@ import {
 import { Course } from '@/data/mockCourses';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { useScheduleVariants } from '@/contexts/ScheduleVariantsContext';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 interface PrerequisiteNode {
   course: Course;
@@ -121,10 +117,12 @@ export default function PrerequisiteChainVisualization({
 
   const prerequisiteTree = useMemo(() => {
     return buildPrerequisiteTree(targetCourse.courseCode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetCourse, allCourses]);
 
   const dependentCourses = useMemo(() => {
     return findDependentCourses(targetCourse.courseCode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetCourse.courseCode]);
 
   const toggleNodeExpansion = (courseCode: string) => {

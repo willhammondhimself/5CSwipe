@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Alert,
   StatusBar,
-  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { 
@@ -27,10 +26,8 @@ import { generatePermRequest } from '@/utils/permGenerator';
 import { useLikedCourses } from '@/contexts/LikedCoursesContext';
 import { router } from 'expo-router';
 
-const { width: screenWidth } = Dimensions.get('window');
-
 export default function LikesScreen() {
-  const { likedCourses, superLikedCourses, removeLikedCourse, isCourseSuperLiked } = useLikedCourses();
+  const { likedCourses, removeLikedCourse, isCourseSuperLiked } = useLikedCourses();
 
   const handleCopyPerm = useCallback(async (course: Course) => {
     const permRequest = generatePermRequest(course);

@@ -21,7 +21,7 @@ export default function HomeScreen() {
   const [showProgressDashboard, setShowProgressDashboard] = useState(false);
   const [viewMode, setViewMode] = useState<'swipe' | 'calendar'>('swipe');
   const [refreshing, setRefreshing] = useState(false);
-  const { likedCourses, superLikedCourses, addLikedCourse, addSuperLikedCourse } = useLikedCourses();
+  const { addLikedCourse, addSuperLikedCourse } = useLikedCourses();
   const { filters, getFilteredCourses, resetFilters } = useFilters();
   const { setPremiumStatus } = usePremium();
 

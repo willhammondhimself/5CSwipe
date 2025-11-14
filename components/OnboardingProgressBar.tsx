@@ -10,7 +10,7 @@
  */
 
 import React from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { SwipeColors } from '@/contexts/constants/Colors';
 
 interface OnboardingProgressBarProps {

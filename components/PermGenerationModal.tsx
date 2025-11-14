@@ -5,7 +5,6 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Dimensions,
   ScrollView,
   ActivityIndicator,
   Alert,
@@ -16,8 +15,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { Course } from '@/data/mockCourses';
 import { usePremium } from '@/contexts/PremiumContext';
-
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 interface PermGenerationModalProps {
   visible: boolean;
@@ -55,7 +52,7 @@ export default function PermGenerationModal({
     try {
       const perm = await generatePerm(course);
       setGeneratedPerm(perm);
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to generate PERM request. Please try again.');
     } finally {
       setIsGenerating(false);

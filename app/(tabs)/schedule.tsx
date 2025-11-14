@@ -21,9 +21,8 @@ import {
 } from 'react-native-heroicons/outline';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { useLikedCourses } from '@/contexts/LikedCoursesContext';
-import { useCreditSystem } from '@/contexts/CreditSystemContext';
 import { useScheduleVariants } from '@/contexts/ScheduleVariantsContext';
-import { Course, mockCourses } from '@/data/mockCourses';
+import { Course } from '@/data/mockCourses';
 import { useCourses } from '@/hooks/useCourses';
 import HyperscheduleCalendar from '@/components/HyperscheduleCalendar';
 import CourseSearchBar from '@/components/CourseSearchBar';
@@ -33,8 +32,7 @@ import ShareScheduleModal from '@/components/ShareScheduleModal';
 
 export default function ScheduleScreen() {
   const { likedCourses, addLikedCourse } = useLikedCourses();
-  const { creditSystem } = useCreditSystem();
-  const { activePlan, isLoading, updatePlanCourses } = useScheduleVariants();
+  const { activePlan, updatePlanCourses } = useScheduleVariants();
   const [showPlanManager, setShowPlanManager] = useState(false);
   const [showProgressDashboard, setShowProgressDashboard] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -46,10 +44,6 @@ export default function ScheduleScreen() {
 
   // Use active plan courses if available, otherwise fall back to liked courses
   const currentCourses = activePlan?.courses || likedCourses;
-
-  const totalCredits = creditSystem === 'hmc'
-    ? currentCourses.reduce((sum, course) => sum + Math.round(course.credits / 3) || 1, 0)
-    : currentCourses.reduce((sum, course) => sum + course.credits, 0);
 
   const handlePlanActivate = () => {
     // Plan has been activated, close the modal and refresh the view

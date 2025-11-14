@@ -19,10 +19,8 @@ interface NotificationSettingsProps {
 
 export default function NotificationSettings({ onClose }: NotificationSettingsProps) {
   const {
-    isInitialized,
     hasPermission,
     preferences,
-    subscriptions,
     isLoading,
     requestPermissions,
     updatePreferences,

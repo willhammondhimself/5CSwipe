@@ -49,7 +49,7 @@ export default function BubbleTabBar({ tabs, activeTab, onTabPress }: BubbleTabB
       Math.sin(Date.now() / 1000) * 2,
       { duration: 3000 }
     );
-  }, []);
+  }, [floatingOffset]);
 
   // Container animation styles
   const containerAnimatedStyle = useAnimatedStyle(() => {
@@ -85,12 +85,12 @@ export default function BubbleTabBar({ tabs, activeTab, onTabPress }: BubbleTabB
         damping: 18,
         stiffness: 200,
       });
-      
+
       iconScale.value = withSpring(isActive ? 1.1 : 1, {
         damping: 15,
         stiffness: 300,
       });
-    }, [isActive]);
+    }, [isActive, bubbleWidth, iconScale]);
 
     const buttonAnimatedStyle = useAnimatedStyle(() => {
       return {

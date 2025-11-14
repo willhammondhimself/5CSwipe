@@ -44,6 +44,7 @@ export default function ShareScheduleModal({ visible, planId, planName, onClose 
     if (visible) {
       loadShareUrl();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, planId]);
 
   async function loadShareUrl() {

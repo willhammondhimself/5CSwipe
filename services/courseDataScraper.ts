@@ -320,6 +320,7 @@ class SchoolScraper {
   async healthCheck(): Promise<boolean> {
     try {
       // Use the real scraper's health check functionality
+      // @ts-expect-error - getStats may not be available on all scraper implementations
       const stats = this.realScraper.getStats();
       return stats.requestCount >= 0; // If we can get stats, scraper is healthy
     } catch {
@@ -355,6 +356,7 @@ class SchoolScraper {
    * Get scraper statistics from the real scraper
    */
   getRealScraperStats() {
+    // @ts-expect-error - getStats may not be available on all scraper implementations
     return this.realScraper.getStats();
   }
 

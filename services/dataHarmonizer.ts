@@ -281,15 +281,20 @@ class DataHarmonizer {
         // Additional required fields
         scheduleSections: [],
         crossCollegeEnrollment: {
-          allowedSchools: [school],
-          restrictions: [],
-          crossRegistrationCount: 0
+          homeSchoolStudents: 0,
+          crossEnrolledStudents: {},
+          totalCrossEnrollment: 0,
+          crossEnrollmentCap: 0,
+          crossEnrollmentRestrictions: '',
+          consortiumPriority: 'home' as const
         },
         degreeRequirements: [],
         courseSequencing: {
-          prerequisites: [],
+          immediatePrerequisites: [],
           corequisites: [],
-          subsequentCourses: []
+          recommendedPreparation: [],
+          nextCourses: [],
+          alternativeSequences: []
         },
         popularity: {
           likesLast7Days: Math.floor(Math.random() * 50),
@@ -305,7 +310,31 @@ class DataHarmonizer {
           schoolRanking: Math.floor(Math.random() * 50) + 1,
           departmentRanking: Math.floor(Math.random() * 20) + 1,
           consortiumRanking: Math.floor(Math.random() * 200) + 1
-        }
+        },
+        courseMaterials: {
+          textbooks: [],
+          additionalReading: [],
+          software: [],
+          equipment: [],
+          estimatedCost: 0,
+          libraryReserves: []
+        },
+        assessmentInfo: {
+          gradingScale: 'letter' as const,
+          examSchedule: [],
+          projectSchedule: [],
+          participationWeight: 0,
+          attendancePolicy: {
+            required: false,
+            excusedAbsences: 0,
+            penaltyPerUnexcused: '',
+            makeupOpportunities: false,
+            participationAffected: false
+          },
+          latePolicyGeneral: '',
+          makeupPolicyGeneral: ''
+        },
+        careerRelevance: []
       };
 
       return harmonizedCourse;

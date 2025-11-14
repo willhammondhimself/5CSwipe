@@ -71,7 +71,7 @@ export default function RealTimeStatusIndicator({
       modalOpacity.value = withTiming(0, { duration: 200 });
       modalScale.value = withTiming(0.9, { duration: 200 });
     }
-  }, [showModal]);
+  }, [showModal, modalOpacity, modalScale]);
 
   const pulseStyle = useAnimatedStyle(() => ({
     opacity: pulseOpacity.value,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -10,14 +10,13 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
-import { 
+import {
   XMarkIcon,
   ChartBarIcon,
   HeartIcon,
   HandThumbDownIcon,
   AcademicCapIcon,
   ClockIcon,
-  MapPinIcon,
   BuildingOfficeIcon
 } from 'react-native-heroicons/outline';
 import Animated, {
@@ -51,7 +50,7 @@ export default function RecommendationInsights({
       opacity.value = withTiming(0, { duration: 200 });
       scale.value = withTiming(0.9, { duration: 200 });
     }
-  }, [isVisible]);
+  }, [isVisible, opacity, scale]);
 
   const preferences = recommendationEngine.getUserPreferences();
   const stats = recommendationEngine.getSwipeStatistics();

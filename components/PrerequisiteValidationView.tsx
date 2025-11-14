@@ -16,9 +16,7 @@ import {
   ExclamationTriangleIcon,
   AcademicCapIcon,
   BookOpenIcon,
-  ClockIcon,
   LightBulbIcon,
-  ChartBarSquareIcon,
   ArrowRightIcon,
 } from 'react-native-heroicons/outline';
 import { SwipeColors } from '@/contexts/constants/Colors';

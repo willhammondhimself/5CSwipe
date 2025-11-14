@@ -1,8 +1,6 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Dimensions, TextInput, Platform } from 'react-native';
+import React, { useState, useMemo, useEffect } from 'react';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, TextInput, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
-import Animated, { useSharedValue, useAnimatedStyle, withSpring, runOnJS } from 'react-native-reanimated';
 import { Course } from '@/data/mockCourses';
 import { SwipeColors } from '@/contexts/constants/Colors';
 import { useLikedCourses } from '@/contexts/LikedCoursesContext';
@@ -41,37 +39,6 @@ export default function DesktopCalendarView() {
   const [draggedCourse, setDraggedCourse] = useState<Course | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const windowWidth = Dimensions.get('window').width;
-  const isMobile = windowWidth < 768;
-
-  // Mobile gesture state
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
-  const calendarRef = useRef<View>(null);
-  const [calendarLayout, setCalendarLayout] = useState({ x: 0, y: 0, width: 0, height: 0 });
-
-  // Helper to calculate drop position from touch coordinates
-  const calculateDropPosition = (x: number, y: number): { day: string; hour: number } | null => {
-    // Account for calendar offset
-    const relativeX = x - calendarLayout.x;
-    const relativeY = y - calendarLayout.y - 60; // Subtract header height
-
-    // Calculate day column (5 days = Monday-Friday)
-    const dayWidth = calendarLayout.width / 5;
-    const dayIndex = Math.floor(relativeX / dayWidth);
-
-    if (dayIndex < 0 || dayIndex >= DAYS.length) return null;
-
-    const day = DAYS[dayIndex];
-
-    // Calculate hour (60px per hour, starting at 8 AM)
-    const hour = Math.floor(relativeY / 60) + 8;
-
-    if (hour < 8 || hour > 21) return null; // Outside 8 AM - 9 PM range
-
-    return { day, hour };
-  };
-
   // Load scheduled courses from active plan on mount
   useEffect(() => {
     if (activePlan?.courses && activePlan.courses.length > 0) {
@@ -82,7 +49,7 @@ export default function DesktopCalendarView() {
       }));
       setScheduledCourses(scheduled);
     }
-  }, [activePlan?.id]); // Re-load when active plan changes
+  }, [activePlan?.courses]); // Re-load when active plan changes
 
   // Parse course meeting times into time slots
   const parseTimeSlots = (course: Course): TimeSlot[] => {

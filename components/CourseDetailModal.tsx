@@ -52,7 +52,7 @@ export default function CourseDetailModal({
       opacity.value = withTiming(0, { duration: 200 });
       scale.value = withTiming(0.9, { duration: 200 });
     }
-  }, [isVisible]);
+  }, [isVisible, opacity, scale]);
 
   const animatedModalStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -95,7 +95,7 @@ export default function CourseDetailModal({
         'Your personalized PERM request has been copied to the clipboard. You can now paste it into an email to the professor.',
         [{ text: 'Great!' }]
       );
-    } catch (error) {
+    } catch {
       Alert.alert(
         'Error',
         'Failed to generate PERM request. Please try again.',
